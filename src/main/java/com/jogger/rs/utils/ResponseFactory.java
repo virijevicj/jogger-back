@@ -51,4 +51,8 @@ public final class ResponseFactory {
     public ResponseEntity<Object> forbidden(String message) {
         return createResponse(HttpStatus.FORBIDDEN.value(), message, "");
     }
+
+    public ResponseEntity<Object> unauthorized(String message) {
+        return createResponse(HttpStatus.UNAUTHORIZED.value(), message, "");
+    }
 }
