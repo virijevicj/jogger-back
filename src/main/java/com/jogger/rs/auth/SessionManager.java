@@ -22,12 +22,8 @@ public final class SessionManager {
     }
 
     // uklanjanje sesije usera sa odgovarajucim radnik
-    public boolean removeUserSession(String token) {
-        if (tokenExists(token)) {
-            sessionMap.remove(token);
-            return true;
-        }
-        return false;
+    public void removeUserSession(String token) {
+        sessionMap.remove(token);
     }
     // provera da li odredjena sesija postoji
     public boolean tokenExists(String token) {
