@@ -35,6 +35,8 @@ public class AuthManager {
         // ovde cemo da definisemo pravila koji request mora da ima koju ulogu
         authRules.put(HttpMethod.POST.name() + "-" + RequestMappingPrefix.AUTH,
                 Collections.emptyList());
+        authRules.put(HttpMethod.GET.name() + "-" + RequestMappingPrefix.USER,
+                Collections.emptyList());
     }
 
     public Boolean auth(HttpServletRequest request) throws AuthenticationException {

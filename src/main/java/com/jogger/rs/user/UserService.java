@@ -71,4 +71,9 @@ public class UserService implements UserServiceInterface{
     public void logout(String token) {
         sessionManager.removeUserSession(token);
     }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
 }
