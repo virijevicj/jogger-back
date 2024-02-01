@@ -7,12 +7,10 @@ import com.jogger.rs.utils.ResponseFactory;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.security.sasl.AuthenticationException;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(RequestMappingPrefix.USER)
@@ -34,4 +32,13 @@ public class UserController {
             return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
         return responseFactory.ok(userService.findAll()) ;
     }
+
+    @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    private @ResponseBody ResponseEntity<Object> findById(HttpServletRequest request, @PathVariable(name = "id") Integer id) throws AuthenticationException {
+        if (!authManager.auth(request))
+            return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
+        return responseFactory.ok(userService.findById(id).orElseThrow(() ->
+                new NoSuchElementException(ErrorMessage.NO_USER_FOUND_WITH_ID + id))) ;
+    }
+
 }

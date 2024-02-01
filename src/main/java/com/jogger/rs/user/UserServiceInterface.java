@@ -13,4 +13,6 @@ public interface UserServiceInterface {
     void logout(String token);
 
     List<User> findAll();
+
+    Optional<User> findById(Integer id);
 }

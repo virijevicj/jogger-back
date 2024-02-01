@@ -76,4 +76,8 @@ public class UserService implements UserServiceInterface{
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
+    public Optional<User> findById(Integer id) throws IllegalArgumentException {
+        return userRepository.findByKeyUserAndActiveTrue(id);
+    }
 }

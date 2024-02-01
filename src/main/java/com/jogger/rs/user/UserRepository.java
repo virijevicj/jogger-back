@@ -11,4 +11,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      ActiveTrue ide uvek zato sto radimo soft delete
      */
     Optional<User> findByUsernameAndActiveTrue(String username);
+
+    Optional<User> findByKeyUserAndActiveTrue(Integer id);
 }
