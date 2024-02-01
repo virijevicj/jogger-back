@@ -40,8 +40,8 @@ public class AuthManager {
         String token = request.getHeader("Token");
         if (!StringUtils.hasText(token))
             throw new AuthenticationException(ErrorMessage.NO_TOOKEN_IN_HEADER);
-        UserSession user = sessionManager.getUserFromSession(token).orElseThrow(() ->
-                new AuthenticationException(ErrorMessage.NO_TOKEN_FOUND + token));
+        UserSession user = sessionManager.getUserFromSession(token)
+                .orElseThrow(() -> new AuthenticationException(ErrorMessage.NO_TOKEN_FOUND + token));
         String method = request.getMethod();
         String requestMapping = extractRequestMappingFromRequest(request);
         List<RoleName> roles = authRules.get(method + "-" + requestMapping);
