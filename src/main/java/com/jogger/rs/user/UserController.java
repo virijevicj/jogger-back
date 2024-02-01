@@ -3,6 +3,7 @@ package com.jogger.rs.user;
 import com.jogger.rs.auth.AuthManager;
 import com.jogger.rs.labels.ErrorMessage;
 import com.jogger.rs.labels.RequestMappingPrefix;
+import com.jogger.rs.labels.SuccessMessage;
 import com.jogger.rs.utils.ResponseFactory;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
@@ -41,4 +42,12 @@ public class UserController {
                 new NoSuchElementException(ErrorMessage.NO_USER_FOUND_WITH_ID + id))) ;
     }
 
+    @DeleteMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    private @ResponseBody ResponseEntity<Object> deleteById(HttpServletRequest request, @PathVariable(name = "id") Integer id) throws AuthenticationException {
+        if (!authManager.auth(request))
+            return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
+        String token = request.getHeader("Token");
+        userService.deleteById(id, token);
+        return responseFactory.ok(SuccessMessage.USER_DELETE_SUCCESS + id);
+    }
 }

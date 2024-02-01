@@ -15,4 +15,6 @@ public interface UserServiceInterface {
     List<User> findAll();
 
     Optional<User> findById(Integer id);
+
+    void deleteById(Integer id, String token) throws NoSuchElementException;
 }

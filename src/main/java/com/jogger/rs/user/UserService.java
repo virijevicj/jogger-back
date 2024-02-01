@@ -80,4 +80,13 @@ public class UserService implements UserServiceInterface{
     public Optional<User> findById(Integer id) throws IllegalArgumentException {
         return userRepository.findByKeyUserAndActiveTrue(id);
     }
+
+    @Override
+    public void deleteById(Integer id, String token) throws NoSuchElementException {
+        User user = findById(id).orElseThrow(() ->
+                new NoSuchElementException(ErrorMessage.NO_USER_FOUND_WITH_ID + id));
+        user.setActive(false);
+        userRepository.save(user);
+        sessionManager.deleteUserSession(token);
+    }
 }
