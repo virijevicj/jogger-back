@@ -32,10 +32,7 @@ public final class SessionManager {
 
     // vracanje radnikovu sesiju na osnovu cookie-ja
     public Optional<UserSession> getUserFromSession(String token) {
-        if (tokenExists(token)) {
-            return Optional.ofNullable(sessionMap.get(token));
-        }
-        return Optional.empty();
+        return Optional.ofNullable(sessionMap.get(token));
     }
 
     // uklanjanje svih sesija
