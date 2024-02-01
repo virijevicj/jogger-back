@@ -38,7 +38,6 @@ public class User {
     private String email;
 
     @Column(name = "active", nullable = false, columnDefinition = "boolean default true")
-    @JsonIgnore
     private Boolean active;
 
     @ManyToMany(fetch = FetchType.EAGER)
