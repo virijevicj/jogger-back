@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -32,6 +33,8 @@ public class AuthManager {
 
     private void addAuthRules() {
         // ovde cemo da definisemo pravila koji request mora da ima koju ulogu
+        authRules.put(HttpMethod.POST.name() + "-" + RequestMappingPrefix.AUTH,
+                Collections.emptyList());
     }
 
     public Boolean auth(HttpServletRequest request) throws AuthenticationException {

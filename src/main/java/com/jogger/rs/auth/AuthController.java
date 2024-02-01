@@ -41,4 +41,12 @@ public class AuthController {
         return responseFactory.ok(SuccessMessage.LOGIN_SUCCESS, responseDto);
     }
 
+    @PostMapping(value = "/logout", produces = MediaType.APPLICATION_JSON_VALUE)
+    private @ResponseBody ResponseEntity<Object> logout(HttpServletRequest request) throws AuthenticationException {
+        if (!authManager.auth(request))
+            return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
+        userService.logout(request.getHeader("Token"));
+        return responseFactory.ok(SuccessMessage.LOGOUT_SUCCESS);
+    }
+
 }

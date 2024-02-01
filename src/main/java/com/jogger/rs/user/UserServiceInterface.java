@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface UserServiceInterface {
     Optional<LoginResponseDto> login(LoginRequestDto loginRequestDto) throws IllegalArgumentException, NoSuchElementException;
 
+    void logout(String token);
 }

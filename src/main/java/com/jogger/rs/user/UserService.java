@@ -66,4 +66,9 @@ public class UserService implements UserServiceInterface{
         sessionManager.createUserSession(token, modelMapper.map(user, UserSession.class));
         return Optional.ofNullable(responseDto);
     }
+
+    @Override
+    public void logout(String token) {
+        sessionManager.removeUserSession(token);
+    }
 }
