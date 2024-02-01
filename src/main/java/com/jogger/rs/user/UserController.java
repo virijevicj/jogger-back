@@ -1,6 +1,7 @@
 package com.jogger.rs.user;
 
 import com.jogger.rs.auth.AuthManager;
+import com.jogger.rs.dto.UserDto;
 import com.jogger.rs.dto.UsersAndRolesDto;
 import com.jogger.rs.labels.ErrorMessage;
 import com.jogger.rs.labels.RequestMappingPrefix;
@@ -61,6 +62,15 @@ public class UserController {
         String token = request.getHeader("Token");
         userService.deleteById(id, token);
         return responseFactory.ok(SuccessMessage.USER_DELETE_SUCCESS + id);
+    }
+
+    @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
+    private @ResponseBody ResponseEntity<Object> save(HttpServletRequest request, @RequestBody UserDto newUser) throws AuthenticationException {
+        if (!authManager.auth(request)) {
+            return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
+        }
+        userService.save(newUser);
+        return responseFactory.ok(SuccessMessage.USER_SAVE_SUCCESS + newUser.getUsername());
     }
 
 }

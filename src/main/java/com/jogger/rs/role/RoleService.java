@@ -19,4 +19,9 @@ public class RoleService implements RoleServiceInterface{
     public List<Role> findAll() {
         return roleRepository.findAll();
     }
+
+    @Override
+    public List<Role> findRolesByNames(List<String> roleNames) {
+        return roleRepository.findRolesByRoleNames(roleNames);
+    }
 }

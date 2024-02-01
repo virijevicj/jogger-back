@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 public class UserDto {
+
     private Integer keyUser;
     private String username;
     private String password;
@@ -14,6 +15,6 @@ public class UserDto {
     private String lastName;
     private String email;
     private Boolean active;
-    List<Integer> rolesKeys;
+    List<String> roles;
 
 }

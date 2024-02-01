@@ -2,6 +2,7 @@ package com.jogger.rs.user;
 
 import com.jogger.rs.dto.LoginRequestDto;
 import com.jogger.rs.dto.LoginResponseDto;
+import com.jogger.rs.dto.UserDto;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -17,4 +18,6 @@ public interface UserServiceInterface {
     Optional<User> findById(Integer id);
 
     void deleteById(Integer id, String token) throws NoSuchElementException;
+
+    void save(UserDto newUser) throws IllegalArgumentException;
 }
