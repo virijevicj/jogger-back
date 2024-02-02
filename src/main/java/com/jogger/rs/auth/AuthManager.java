@@ -36,13 +36,13 @@ public class AuthManager {
         authRules.put(HttpMethod.POST.name() + "-" + RequestMappingPrefix.AUTH,
                 Collections.emptyList());
         authRules.put(HttpMethod.GET.name() + "-" + RequestMappingPrefix.USER,
-                List.of(RoleName.ADMIN));
+                List.of(RoleName.Admin));
         authRules.put(HttpMethod.DELETE.name() + "-" + RequestMappingPrefix.USER,
-                List.of(RoleName.ADMIN));
+                List.of(RoleName.Admin));
         authRules.put(HttpMethod.POST.name() + "-" + RequestMappingPrefix.USER,
-                List.of(RoleName.ADMIN));
+                List.of(RoleName.Admin));
         authRules.put(HttpMethod.PUT.name() + "-" + RequestMappingPrefix.USER,
-                List.of(RoleName.ADMIN));
+                List.of(RoleName.Admin));
 
     }
 
