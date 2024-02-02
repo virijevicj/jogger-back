@@ -88,12 +88,12 @@ public class UserService implements UserServiceInterface{
     }
 
     @Override
-    public void deleteById(Integer id, String token) throws NoSuchElementException {
+    public void deleteById(Integer id) throws NoSuchElementException {
         User user = findById(id).orElseThrow(() ->
                 new NoSuchElementException(ErrorMessage.NO_USER_FOUND_WITH_ID + id));
         user.setActive(false);
         userRepository.save(user);
-        sessionManager.deleteUserSession(token);
+        sessionManager.deleteUserSession(id);
     }
 
     @Override

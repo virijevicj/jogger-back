@@ -59,8 +59,7 @@ public class UserController {
     private @ResponseBody ResponseEntity<Object> deleteById(HttpServletRequest request, @PathVariable(name = "id") Integer id) throws AuthenticationException {
         if (!authManager.auth(request))
             return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
-        String token = request.getHeader("Token");
-        userService.deleteById(id, token);
+        userService.deleteById(id);
         return responseFactory.ok(SuccessMessage.USER_DELETE_SUCCESS + id);
     }
 

@@ -17,7 +17,7 @@ public interface UserServiceInterface {
 
     Optional<User> findById(Integer id);
 
-    void deleteById(Integer id, String token) throws NoSuchElementException;
+    void deleteById(Integer id) throws NoSuchElementException;
 
     void save(UserDto newUser) throws IllegalArgumentException;
 

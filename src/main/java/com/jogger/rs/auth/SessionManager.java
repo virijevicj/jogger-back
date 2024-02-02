@@ -7,6 +7,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -51,8 +52,13 @@ public final class SessionManager {
     }
 
     // kada obrisemo user-a uklanjamo i sesiju
-    public void deleteUserSession(String token) {
-        sessionMap.remove(token);
+    public void deleteUserSession(Integer id) {
+        for (String token : sessionMap.keySet()) {
+            if (Objects.equals(sessionMap.get(token).getKeyUser(), id)) {
+                sessionMap.remove(token);
+                return;
+            }
+        }
     }
 
     // kada azuriramo user-a azuriramo i sesiju
