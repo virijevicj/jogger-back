@@ -73,4 +73,14 @@ public class UserController {
         return responseFactory.ok(SuccessMessage.USER_SAVE_SUCCESS + newUser.getUsername());
     }
 
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    private @ResponseBody ResponseEntity<Object> update(HttpServletRequest request, @RequestBody UserDto user) throws AuthenticationException {
+        if (!authManager.auth(request)) {
+            return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
+        }
+        String token = request.getHeader("Cookie");
+        String message = userService.update(user, token) ? SuccessMessage.USER_UPDATE_SUCCESS : SuccessMessage.USER_UPDATE_SUCCESS_BUT_NOTHING_WAs_DIFFERENT ;
+        return responseFactory.ok(message + user.getKeyUser());
+    }
+
 }

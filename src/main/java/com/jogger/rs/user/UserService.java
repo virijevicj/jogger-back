@@ -7,9 +7,11 @@ import com.jogger.rs.dto.LoginResponseDto;
 import com.jogger.rs.dto.UserDto;
 import com.jogger.rs.labels.ErrorMessage;
 import com.jogger.rs.role.Role;
+import com.jogger.rs.role.RoleName;
 import com.jogger.rs.role.RoleServiceInterface;
 import com.jogger.rs.utils.Validator;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.collections4.CollectionUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -113,5 +115,64 @@ public class UserService implements UserServiceInterface{
         if (!ObjectUtils.isEmpty(roleNames))
             return roleService.findRolesByNames(roleNames);
         return Collections.emptyList();
+    }
+
+    @Override
+    public boolean update(UserDto userDto, String token) throws IllegalArgumentException, NoSuchElementException {
+        Integer id = userDto.getKeyUser();
+        User user = findById(id).orElseThrow(() ->
+                new NoSuchElementException(ErrorMessage.NO_USER_FOUND_WITH_ID + id));
+        String errorMessage = validator.validateEditedUser(userDto);
+        if (StringUtils.hasText(errorMessage))
+            throw new IllegalArgumentException(errorMessage);
+        boolean userUpdated = updateUserIfNeeded(user, userDto);
+        boolean userRolesUpdated = updateUserRolesIfNeeded(user, userDto);
+        if (userUpdated || userRolesUpdated) {
+            userRepository.save(user);
+        }
+        if (userRolesUpdated)
+            sessionManager.updateUserSession(modelMapper.map(user, UserSession.class), token);
+        return userUpdated || userRolesUpdated;
+    }
+
+    private boolean updateUserRolesIfNeeded(User user, UserDto userDto) {
+        List<String> newRoles = userDto.getRoles();
+        if (newRoles == null) return false; // nije moguce da user nema nijednu ulogu u sistemu!!!
+        List<RoleName> oldRoles = user.getRoles()
+                .stream()
+                .map(Role::getName)
+                .toList();
+        if (!CollectionUtils.isEqualCollection(newRoles, oldRoles)) {
+            List<Role> roles = findUserRoles(userDto);
+            user.setRoles(roles);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean updateUserIfNeeded(User user, UserDto userDto) {
+        // fizikalisanje :(
+        boolean isUpdated = false;
+        if (userDto.getUsername() != null && !userDto.getUsername().equals(user.getUsername())) {
+            isUpdated = true;
+            user.setUsername(userDto.getUsername());
+        }
+        if (userDto.getPassword() != null && !bcrypt.matches(userDto.getPassword(), user.getPassword())) {
+            isUpdated = true;
+            user.setPassword(bcrypt.encode(userDto.getPassword()));
+        }
+        if (userDto.getFirstName() != null && !userDto.getFirstName().equals(user.getFirstName())) {
+            isUpdated = true;
+            user.setFirstName(userDto.getFirstName());
+        }
+        if (userDto.getLastName() != null && !userDto.getLastName().equals(user.getLastName())) {
+            isUpdated = true;
+            user.setLastName(userDto.getLastName());
+        }
+        if (userDto.getEmail() != null && !userDto.getEmail().equals(user.getEmail())) {
+            isUpdated = true;
+            user.setEmail(userDto.getEmail());
+        }
+        return isUpdated;
     }
 }

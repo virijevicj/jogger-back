@@ -20,4 +20,6 @@ public interface UserServiceInterface {
     void deleteById(Integer id, String token) throws NoSuchElementException;
 
     void save(UserDto newUser) throws IllegalArgumentException;
+
+    boolean update(UserDto user, String token);
 }

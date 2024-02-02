@@ -28,8 +28,8 @@ public final class Validator {
         StringBuilder errorMessage = new StringBuilder();
         if (!validateUsername(user.getUsername())) errorMessage.append(ErrorMessage.USERNAME_VALIDATION);
         if (!validatePassword(user.getPassword())) errorMessage.append(ErrorMessage.PASSWORD_VALIDATION);
-        if (user.getFirstName() == null || user.getFirstName().isEmpty()) errorMessage.append(ErrorMessage.FIRST_NAME_VALIDATION);
-        if (user.getLastName() == null || user.getLastName().isEmpty()) errorMessage.append(ErrorMessage.LAST_NAME_VALIDATION);
+        if (!StringUtils.hasText(user.getFirstName())) errorMessage.append(ErrorMessage.FIRST_NAME_VALIDATION);
+        if (!StringUtils.hasText(user.getLastName())) errorMessage.append(ErrorMessage.LAST_NAME_VALIDATION);
         if (!validateEmail(user.getEmail())) errorMessage.append(ErrorMessage.EMAIL_VALIDATION);
         return errorMessage.isEmpty() ? "" : errorMessage.toString();
     }
@@ -40,10 +40,8 @@ public final class Validator {
 
     public String validateEditedUser(UserDto user) {
         StringBuilder errorMessage = new StringBuilder();
-        if (user.getUsername() != null && !validateUsername(user.getUsername())) errorMessage.append(ErrorMessage.USERNAME_VALIDATION);
-        if (user.getPassword() != null && !validatePassword(user.getPassword())) errorMessage.append(ErrorMessage.PASSWORD_VALIDATION);
-        if (!StringUtils.hasText(user.getFirstName())) errorMessage.append(ErrorMessage.FIRST_NAME_VALIDATION);
-        if (!StringUtils.hasText(user.getLastName())) errorMessage.append(ErrorMessage.LAST_NAME_VALIDATION);
+        if (StringUtils.hasText(user.getUsername()) && !validateUsername(user.getUsername())) errorMessage.append(ErrorMessage.USERNAME_VALIDATION);
+        if (StringUtils.hasText(user.getPassword()) && !validatePassword(user.getPassword())) errorMessage.append(ErrorMessage.PASSWORD_VALIDATION);
         if (user.getEmail() != null && !validateEmail(user.getEmail())) errorMessage.append(ErrorMessage.EMAIL_VALIDATION);
         return errorMessage.isEmpty() ? "" : errorMessage.toString();
     }

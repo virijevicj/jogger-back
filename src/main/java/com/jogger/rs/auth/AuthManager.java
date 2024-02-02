@@ -41,6 +41,8 @@ public class AuthManager {
                 List.of(RoleName.ADMIN));
         authRules.put(HttpMethod.POST.name() + "-" + RequestMappingPrefix.USER,
                 List.of(RoleName.ADMIN));
+        authRules.put(HttpMethod.PUT.name() + "-" + RequestMappingPrefix.USER,
+                List.of(RoleName.ADMIN));
 
     }
 
