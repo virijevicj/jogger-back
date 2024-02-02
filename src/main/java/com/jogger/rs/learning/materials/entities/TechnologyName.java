@@ -1,4 +1,4 @@
-package com.jogger.rs.ml.entities;
+package com.jogger.rs.learning.materials.entities;
 
 public enum TechnologyName {
     Java,

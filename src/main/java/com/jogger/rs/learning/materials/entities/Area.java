@@ -1,4 +1,4 @@
-package com.jogger.rs.ml.entities;
+package com.jogger.rs.learning.materials.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -6,17 +6,17 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "platform")
-public class Platform {
+@Table(name = "area")
+public class Area {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "key_platform", nullable = false, unique = true, updatable = false)
-    private Integer keyPlatform;
+    @Column(name = "key_area", nullable = false, unique = true, updatable = false)
+    private Integer keyarea;
 
     @Column(name = "name", nullable = false, unique = true)
     @Enumerated(EnumType.STRING)
-    private PlatformName name;
+    private AreaName name;
 
     @JsonIgnore
     @Column(name = "description")
