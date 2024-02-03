@@ -4,4 +4,5 @@ public interface RequestMappingPrefix {
 
     public final static String AUTH = "/auth";
     public final static String USER = "/users";
+    public final static String LEARNING_MATERIAL = "/lm";
 }
