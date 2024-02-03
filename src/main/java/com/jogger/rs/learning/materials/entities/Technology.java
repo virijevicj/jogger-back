@@ -11,7 +11,7 @@ public class Technology {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "key_techology", nullable = false, unique = true, updatable = false)
+    @Column(name = "key_technology", nullable = false, unique = true, updatable = false)
     private Integer keyContentType;
 
     @Column(name = "name", nullable = false, unique = true)

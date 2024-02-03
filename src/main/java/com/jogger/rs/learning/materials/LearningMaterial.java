@@ -22,7 +22,7 @@ public class LearningMaterial {
     @Column(name = "link", nullable = false)
     private String link;
 
-    @Column(name = "active", nullable = false)
+    @Column(name = "active", nullable = false, columnDefinition = "boolean default true")
     private Boolean active;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
@@ -43,7 +43,7 @@ public class LearningMaterial {
 
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "key_techology", referencedColumnName = "key_techology")
+    @JoinColumn(name = "key_technology", referencedColumnName = "key_technology")
     private Technology technology;
 
     @OneToMany(mappedBy="lm")
