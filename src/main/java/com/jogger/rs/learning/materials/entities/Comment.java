@@ -1,5 +1,6 @@
 package com.jogger.rs.learning.materials.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jogger.rs.learning.materials.LearningMaterial;
 import com.jogger.rs.user.User;
 import jakarta.persistence.*;
@@ -21,6 +22,7 @@ public class Comment {
     @Column(name = "grade", nullable = false)
     private Integer grade;
 
+    @JsonIgnore
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "key_learning_material", referencedColumnName = "key_learning_material")
     private LearningMaterial lm;

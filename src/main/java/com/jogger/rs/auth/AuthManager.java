@@ -45,6 +45,8 @@ public class AuthManager {
                 List.of(RoleName.Admin));
         authRules.put(HttpMethod.GET.name() + "-" + RequestMappingPrefix.LEARNING_MATERIAL,
                 List.of(RoleName.Developer));
+        authRules.put(HttpMethod.GET.name() + "-" + RequestMappingPrefix.LEARNING_MATERIAL_ENTITIES,
+                List.of(RoleName.Developer));
     }
 
     public Boolean auth(HttpServletRequest request) throws AuthenticationException {

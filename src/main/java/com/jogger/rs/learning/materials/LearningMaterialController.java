@@ -3,6 +3,7 @@ package com.jogger.rs.learning.materials;
 import com.jogger.rs.auth.AuthManager;
 import com.jogger.rs.labels.ErrorMessage;
 import com.jogger.rs.labels.RequestMappingPrefix;
+import com.jogger.rs.learning.materials.entities.*;
 import com.jogger.rs.utils.ResponseFactory;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.security.sasl.AuthenticationException;
@@ -29,10 +31,15 @@ public class LearningMaterialController {
         this.responseFactory = responseFactory;
     }
 
-    @GetMapping(name = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    private ResponseEntity<Object> findAll(HttpServletRequest request) throws AuthenticationException {
-        if (!authManager.auth(request))
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    private ResponseEntity<Object> findAll(HttpServletRequest request,
+                                           @RequestParam(name = "area", required = false) AreaName area,
+                                           @RequestParam(name = "contentType", required = false) ContentTypeName contentType,
+                                           @RequestParam(name = "level", required = false) LevelName level,
+                                           @RequestParam(name = "platform", required = false) PlatformName platform,
+                                           @RequestParam(name = "technology", required = false) TechnologyName technology) throws AuthenticationException {
+       if (!authManager.auth(request))
             return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
-        return responseFactory.ok(learningMaterialService.findAll());
+        return responseFactory.ok(learningMaterialService.findLearningMaterials(area, contentType, level, platform, technology));
     }
 }
