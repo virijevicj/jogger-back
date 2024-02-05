@@ -9,10 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.security.sasl.AuthenticationException;
 
@@ -41,5 +38,13 @@ public class LearningMaterialController {
        if (!authManager.auth(request))
             return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
         return responseFactory.ok(learningMaterialService.findLearningMaterials(area, contentType, level, platform, technology));
+    }
+
+    @DeleteMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    private ResponseEntity<Object> delete(HttpServletRequest request, @PathVariable(name = "id") Integer id) throws AuthenticationException {
+        if (!authManager.auth(request))
+            return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
+        learningMaterialService.deleteById(id);
+        return null;
     }
 }

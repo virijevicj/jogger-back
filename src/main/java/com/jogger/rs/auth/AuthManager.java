@@ -49,7 +49,8 @@ public class AuthManager {
                 List.of(RoleName.Developer));
         authRules.put(HttpMethod.POST.name() + "-" + RequestMappingPrefix.LEARNING_MATERIAL_COMMENT,
                 List.of(RoleName.Developer));
-
+        authRules.put(HttpMethod.DELETE.name() + "-" + RequestMappingPrefix.LEARNING_MATERIAL,
+                List.of(RoleName.Developer));
     }
 
     public Boolean auth(HttpServletRequest request) throws AuthenticationException {
@@ -73,7 +74,8 @@ public class AuthManager {
 
     private String extractRequestMappingFromRequest(HttpServletRequest request) {
         String uri = request.getRequestURI();
-        return uri.substring(contextPath.length());
+        String tmp = uri.substring(contextPath.length());
+        return tmp.indexOf("/", 1) == -1 ? tmp : tmp.substring(0, tmp.indexOf("/", 1));
     }
 
     private Boolean checkIfUserHasNecessaryRoles(UserSession user, List<RoleName> roles) {
