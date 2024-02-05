@@ -1,5 +1,6 @@
 package com.jogger.rs.utils;
 
+import com.jogger.rs.dto.NewCommentDto;
 import com.jogger.rs.dto.UserDto;
 import com.jogger.rs.labels.ErrorMessage;
 import com.jogger.rs.user.User;
@@ -43,6 +44,15 @@ public final class Validator {
         if (StringUtils.hasText(user.getUsername()) && !validateUsername(user.getUsername())) errorMessage.append(ErrorMessage.USERNAME_VALIDATION);
         if (StringUtils.hasText(user.getPassword()) && !validatePassword(user.getPassword())) errorMessage.append(ErrorMessage.PASSWORD_VALIDATION);
         if (user.getEmail() != null && !validateEmail(user.getEmail())) errorMessage.append(ErrorMessage.EMAIL_VALIDATION);
+        return errorMessage.isEmpty() ? "" : errorMessage.toString();
+    }
+
+    public String validateNewComment(NewCommentDto commentDto) {
+        System.out.println(commentDto);
+        StringBuilder errorMessage = new StringBuilder();
+        if (!StringUtils.hasText(commentDto.getText())) errorMessage.append(ErrorMessage.NO_TEXT_PRESENT);
+        if (commentDto.getGrade() == null) errorMessage.append(ErrorMessage.NO_GRADE_PRESENT);
+        else if (commentDto.getGrade() < 1 || commentDto.getGrade() > 10) errorMessage.append(ErrorMessage.GRADE_VALUE_VALIDATION);
         return errorMessage.isEmpty() ? "" : errorMessage.toString();
     }
 }

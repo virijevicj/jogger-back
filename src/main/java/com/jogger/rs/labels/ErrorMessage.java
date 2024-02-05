@@ -18,4 +18,8 @@ public interface ErrorMessage {
     public final static String USERNAME_ALREADY_EXISTS = "Vec postoji korisnik za username: ";
     public final static String EMAIL_VALIDATION = "Email mora biti u obliku nekiTekst@gmail.com gde nekiTekst sme sadrzati mala i velika slova, brojeve i specijalne karaktere: ., -, _.";
     public final static String NO_TOOKEN_IN_HEADER = "Header nije lepo konfigurisan - Token nije prosledjen!";
+    public final static String NO_TEXT_PRESENT = "Komentar je obavezna stavka prilikom recenzije materijala za ucenje.";
+    public final static String NO_GRADE_PRESENT = "Ocena je obavezna stavka prilikom recenzije materijala za ucenje.";
+    public final static String NO_LEARNING_MATERIAL_FOUND = "Nije pronadjen materijal sa id-jem: ";
+    public final static String GRADE_VALUE_VALIDATION = "Ocena mora da ima vrednost izmedju 1 i 10.";
 }

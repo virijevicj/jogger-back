@@ -4,6 +4,7 @@ import com.jogger.rs.learning.materials.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LearningMaterialService implements LearningMaterialServiceInterface{
@@ -13,6 +14,12 @@ public class LearningMaterialService implements LearningMaterialServiceInterface
     @Autowired
     public LearningMaterialService(LearningMaterialRepository learningMaterialRepository) {
         this.learningMaterialRepository = learningMaterialRepository;
+    }
+
+    @Override
+    public Optional<LearningMaterial> findById(Integer id) {
+        if (id == null) return Optional.empty();
+        return learningMaterialRepository.findById(id);
     }
 
     @Override
