@@ -39,13 +39,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return responseFactory.unauthorized(exception.getMessage());
     }
 
-    /* u slucaju da se nesto desi tokom izvrsavanja sto nije pokrivao drugim exceptionhandler-ima
-    ali cemo tek otkomentarisati na kraju da bi pratili stack trace tokom razvoja
     @ExceptionHandler(value = {RuntimeException.class})
     public @ResponseBody ResponseEntity<Object> handleRunTimeException(RuntimeException exception) {
-        exception.printStackTrace();
         log.error(exception.getMessage());
-        return  responseFactory.somethingWentWrong(exception.getMessage());
+        return responseFactory.somethingWentWrong(exception.getMessage());
     }
-    */
 }
