@@ -5,6 +5,7 @@ import com.jogger.rs.auth.TokenFactory;
 import com.jogger.rs.dto.LoginRequestDto;
 import com.jogger.rs.dto.LoginResponseDto;
 import com.jogger.rs.dto.UserDto;
+import com.jogger.rs.email.service.EmailServiceInterface;
 import com.jogger.rs.labels.ErrorMessage;
 import com.jogger.rs.role.Role;
 import com.jogger.rs.role.RoleName;
@@ -32,10 +33,11 @@ public class UserService implements UserServiceInterface{
     private SessionManager sessionManager;
     private ModelMapper modelMapper;
     private RoleServiceInterface roleService;
+    private EmailServiceInterface emailService;
 
     @Autowired
     public UserService(UserRepository userRepository, Validator validator, PasswordEncoder bcrypt, SessionManager sessionManager,
-                       TokenFactory tokenFactory, ModelMapper modelMapper, RoleServiceInterface roleService) {
+                       TokenFactory tokenFactory, ModelMapper modelMapper, RoleServiceInterface roleService, EmailServiceInterface emailService) {
         this.userRepository = userRepository;
         this.validator = validator;
         this.bcrypt = bcrypt;
@@ -43,6 +45,7 @@ public class UserService implements UserServiceInterface{
         this.tokenFactory = tokenFactory;
         this.modelMapper = modelMapper;
         this.roleService = roleService;
+        this.emailService = emailService;
     }
 
     @Override
@@ -109,6 +112,7 @@ public class UserService implements UserServiceInterface{
             user.setActive(true);
         user.setRoles(findUserRoles(newUser));
         userRepository.save(user);
+        emailService.sendEmailWithUsernameAndPassword(user.getEmail(), user.getUsername(), newUser.getPassword());
     }
     private List<Role> findUserRoles(UserDto newUser) {
         List<String> roleNames = newUser.getRoles();
