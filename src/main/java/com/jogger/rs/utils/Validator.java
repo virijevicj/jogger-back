@@ -35,6 +35,7 @@ public final class Validator {
         if (!StringUtils.hasText(user.getFirstName())) errorMessage.append(ErrorMessage.FIRST_NAME_VALIDATION);
         if (!StringUtils.hasText(user.getLastName())) errorMessage.append(ErrorMessage.LAST_NAME_VALIDATION);
         if (!validateEmail(user.getEmail())) errorMessage.append(ErrorMessage.EMAIL_VALIDATION);
+        if (ObjectUtils.isEmpty(user.getRoles())) errorMessage.append(ErrorMessage.ROLE_VALIDATION);
         return errorMessage.isEmpty() ? "" : errorMessage.toString();
     }
 

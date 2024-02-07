@@ -34,5 +34,5 @@ public interface ErrorMessage {
     public final static String NO_TECHNOLOGY_WITH_NAME = "Ne postoji tehnologija sa imenom: ";
     public final static String NO_LEVEL_WITH_NAME = "Ne postoji level sa imenom: ";
     public final static String NO_CONTENT_TYPE_WITH_NAME = "Ne postoji tip sadrzaja sa imenom: ";
-
+    public final static String ROLE_VALIDATION = "Korisnik mora imati barem 1 ulogu u sistemu. ";
 }
