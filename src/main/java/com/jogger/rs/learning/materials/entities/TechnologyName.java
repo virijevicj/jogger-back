@@ -6,5 +6,6 @@ public enum TechnologyName {
     Javascript,
     React,
     Mysql,
-    Git
+    Git,
+    Univerzalno
 }
