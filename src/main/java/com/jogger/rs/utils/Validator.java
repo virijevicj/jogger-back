@@ -1,9 +1,11 @@
 package com.jogger.rs.utils;
 
 import com.jogger.rs.dto.NewCommentDto;
+import com.jogger.rs.dto.NewLMDto;
 import com.jogger.rs.dto.UserDto;
 import com.jogger.rs.labels.ErrorMessage;
 import com.jogger.rs.user.User;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
@@ -11,6 +13,7 @@ import org.springframework.util.StringUtils;
 import java.util.regex.Pattern;
 
 @Component
+@CommonsLog
 public final class Validator {
 
     // username validacija: najmanje 6 slova, najmanje 1 veliko slovo, najmanje 1 broj
@@ -48,11 +51,22 @@ public final class Validator {
     }
 
     public String validateNewComment(NewCommentDto commentDto) {
-        System.out.println(commentDto);
         StringBuilder errorMessage = new StringBuilder();
         if (!StringUtils.hasText(commentDto.getText())) errorMessage.append(ErrorMessage.NO_TEXT_PRESENT);
         if (commentDto.getGrade() == null) errorMessage.append(ErrorMessage.NO_GRADE_PRESENT);
         else if (commentDto.getGrade() < 1 || commentDto.getGrade() > 10) errorMessage.append(ErrorMessage.GRADE_VALUE_VALIDATION);
+        return errorMessage.isEmpty() ? "" : errorMessage.toString();
+    }
+
+    public String validateNewLM(NewLMDto newLMDto) {
+        StringBuilder errorMessage = new StringBuilder();
+        if (!StringUtils.hasText(newLMDto.getDescription())) errorMessage.append(ErrorMessage.NO_LM_DESCRIPTION);
+        if (!StringUtils.hasText(newLMDto.getLink())) errorMessage.append(ErrorMessage.NO_LM_LINK);
+        if (newLMDto.getArea() == null) errorMessage.append(ErrorMessage.NO_LM_AREA);
+        if (newLMDto.getLevel() == null) errorMessage.append(ErrorMessage.NO_LM_LEVEL);
+        if (newLMDto.getPlatform() == null) errorMessage.append(ErrorMessage.NO_LM_PLATFORM);
+        if (newLMDto.getTechnology() == null) errorMessage.append(ErrorMessage.NO_LM_TECHNOLOGY);
+        if (newLMDto.getContentType() == null) errorMessage.append(ErrorMessage.NO_LM_CONTENT_TYPE);
         return errorMessage.isEmpty() ? "" : errorMessage.toString();
     }
 }

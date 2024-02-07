@@ -1,8 +1,10 @@
 package com.jogger.rs.learning.materials;
 
 import com.jogger.rs.auth.AuthManager;
+import com.jogger.rs.dto.NewLMDto;
 import com.jogger.rs.labels.ErrorMessage;
 import com.jogger.rs.labels.RequestMappingPrefix;
+import com.jogger.rs.labels.SuccessMessage;
 import com.jogger.rs.learning.materials.entities.*;
 import com.jogger.rs.utils.ResponseFactory;
 import jakarta.servlet.http.HttpServletRequest;
@@ -47,4 +49,14 @@ public class LearningMaterialController {
         learningMaterialService.deleteById(id);
         return null;
     }
+
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    private ResponseEntity<Object> save(HttpServletRequest request, @RequestBody NewLMDto newLMDto) throws AuthenticationException {
+        if (!authManager.auth(request))
+            return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
+        learningMaterialService.save(newLMDto, request.getHeader("Token"));
+        return responseFactory.ok(SuccessMessage.LM_SAVE_SUCCESS);
+    }
+
+
 }

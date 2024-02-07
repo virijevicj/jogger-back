@@ -22,4 +22,17 @@ public interface ErrorMessage {
     public final static String NO_GRADE_PRESENT = "Ocena je obavezna stavka prilikom recenzije materijala za ucenje.";
     public final static String NO_LEARNING_MATERIAL_FOUND = "Nije pronadjen materijal sa id-jem: ";
     public final static String GRADE_VALUE_VALIDATION = "Ocena mora da ima vrednost izmedju 1 i 10.";
+    public final static String NO_LM_DESCRIPTION = "Opis je obavezno polje. ";
+    public final static String NO_LM_LINK = "Link je obavezno polje. ";
+    public final static String NO_LM_AREA = "Oblast je obavezno polje. ";
+    public final static String NO_LM_LEVEL = "Nivo je obavezno polje. ";
+    public final static String NO_LM_PLATFORM = "Platforma je obavezno polje. ";
+    public final static String NO_LM_TECHNOLOGY = "Tehnologija je obavezno polje. ";
+    public final static String NO_LM_CONTENT_TYPE = "Tip sadrzaja je obavezno polje. ";
+    public final static String NO_AREA_WITH_NAME = "Ne postoji oblast sa imenom: ";
+    public final static String NO_PLATFORM_WITH_NAME = "Ne postoji platforma sa imenom: ";
+    public final static String NO_TECHNOLOGY_WITH_NAME = "Ne postoji tehnologija sa imenom: ";
+    public final static String NO_LEVEL_WITH_NAME = "Ne postoji level sa imenom: ";
+    public final static String NO_CONTENT_TYPE_WITH_NAME = "Ne postoji tip sadrzaja sa imenom: ";
+
 }
