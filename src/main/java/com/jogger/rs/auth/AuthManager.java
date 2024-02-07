@@ -44,9 +44,9 @@ public class AuthManager {
         authRules.put(HttpMethod.PUT.name() + "-" + RequestMappingPrefix.USER,
                 List.of(RoleName.Admin));
         authRules.put(HttpMethod.GET.name() + "-" + RequestMappingPrefix.LEARNING_MATERIAL,
-                List.of(RoleName.Developer));
+                List.of(RoleName.Intern, RoleName.Developer));
         authRules.put(HttpMethod.GET.name() + "-" + RequestMappingPrefix.LEARNING_MATERIAL_ENTITIES,
-                List.of(RoleName.Developer));
+                List.of(RoleName.Intern, RoleName.Developer));
         authRules.put(HttpMethod.POST.name() + "-" + RequestMappingPrefix.LEARNING_MATERIAL_COMMENT,
                 List.of(RoleName.Developer));
         authRules.put(HttpMethod.DELETE.name() + "-" + RequestMappingPrefix.LEARNING_MATERIAL,
