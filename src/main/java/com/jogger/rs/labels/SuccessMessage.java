@@ -9,4 +9,6 @@ public interface SuccessMessage {
     public final static String USER_DELETE_SUCCESS = "Uspesno obrisan korisnik za id: ";
     public final static String COMMENT_SAVE_SUCCESS = "Uspesno dodata nova rezencija";
     public final static String LM_SAVE_SUCCESS = "Uspesno dodat novi materijal za ucenje";
+    public final static String LM_DELETE_SUCCESS = "Uspesno obrisan materijal za ucenje";
+
 }

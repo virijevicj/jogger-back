@@ -47,7 +47,7 @@ public class LearningMaterialController {
         if (!authManager.auth(request))
             return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
         learningMaterialService.deleteById(id);
-        return null;
+        return responseFactory.ok(SuccessMessage.LM_DELETE_SUCCESS);
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
