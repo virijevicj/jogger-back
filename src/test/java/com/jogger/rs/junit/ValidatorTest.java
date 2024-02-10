@@ -14,7 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ValidatorTest {
-/*
+
     Validator validator;
 
     @BeforeEach
@@ -469,5 +469,4 @@ public class ValidatorTest {
         assertEquals(validator.validateNewLM(newLM), "");
     }
 
- */
 }
