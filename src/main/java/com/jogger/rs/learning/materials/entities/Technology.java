@@ -12,7 +12,7 @@ public class Technology {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "key_technology", nullable = false, unique = true, updatable = false)
-    private Integer keyContentType;
+    private Integer keyTechnology;
 
     @Column(name = "name", nullable = false, unique = true)
     @Enumerated(EnumType.STRING)

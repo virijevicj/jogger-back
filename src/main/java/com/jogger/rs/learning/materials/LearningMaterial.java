@@ -41,7 +41,6 @@ public class LearningMaterial {
     @JoinColumn(name = "key_platform", referencedColumnName = "key_platform")
     private Platform platform;
 
-
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "key_technology", referencedColumnName = "key_technology")
     private Technology technology;
