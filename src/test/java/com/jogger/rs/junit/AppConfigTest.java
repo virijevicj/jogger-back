@@ -32,7 +32,7 @@ public class AppConfigTest {
     }
 
     @Test
-    @DisplayName("AppConfigTest - kreiranje BCryptPasswordEncoder ModelMapper")
+    @DisplayName("AppConfigTest - kreiranje ModelMapper objekta")
     void modelMapper() {
         assertInstanceOf(ModelMapper.class, appConfig.modelMapper());
     }
