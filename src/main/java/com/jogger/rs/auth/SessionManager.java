@@ -1,10 +1,8 @@
 package com.jogger.rs.auth;
 
-import com.jogger.rs.user.User;
 import com.jogger.rs.user.UserSession;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -16,10 +14,9 @@ public final class SessionManager {
     private HashMap<String, UserSession> sessionMap = new HashMap<>();
 
     // dodavanje sesije usera sa odgovarajucim radnikom
-    public boolean createUserSession(String token, UserSession user) {
-        if (tokenExists(token) || ObjectUtils.isEmpty(user)) return false;
+    public void createUserSession(String token, UserSession user) {
+        if (tokenExists(token) || ObjectUtils.isEmpty(user)) return;
         sessionMap.put(token, user);
-        return true;
     }
 
     // uklanjanje sesije usera sa odgovarajucim radnik
@@ -41,16 +38,6 @@ public final class SessionManager {
         sessionMap = new HashMap<>();
     }
 
-    // proverava da li se mapa sa sesijama prazna
-    public boolean isEmpty() {
-        return sessionMap.isEmpty();
-    }
-
-    // ispis radi provera da li radi mehanizam
-    public void sessionMapToString() {
-        System.out.println(sessionMap.toString());
-    }
-
     // kada obrisemo user-a uklanjamo i sesiju
     public void deleteUserSession(Integer id) {
         for (String token : sessionMap.keySet()) {
@@ -65,4 +52,9 @@ public final class SessionManager {
     public void updateUserSession(UserSession user, String token) {
         sessionMap.replace(token,user);
     }
+
+    public HashMap<String, UserSession> getSessionMap() {
+        return sessionMap;
+    }
+
 }
