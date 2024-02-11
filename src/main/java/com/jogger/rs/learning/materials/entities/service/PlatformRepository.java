@@ -7,8 +7,18 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * Repozitorijum za rad sa platformama materijala za ucenje.
+ *
+ * @author Jovan Virijevic
+ */
 @Repository
 public interface PlatformRepository extends JpaRepository<Platform, Integer> {
 
+    /**
+     * Metoda koja pronalazi platforme materijala za ucenje na osnovu imena.
+     * @param name ime platforme
+     * @return Optional<Platform>
+     */
     Optional<Platform> findByName(PlatformName name);
 }
