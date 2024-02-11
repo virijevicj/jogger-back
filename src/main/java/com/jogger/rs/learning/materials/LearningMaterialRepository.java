@@ -7,11 +7,31 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repozitorijum za rad sa materijalima za ucenje.
+ *
+ * @author Jovan Virijevic
+ */
 @Repository
 public interface LearningMaterialRepository extends JpaRepository<LearningMaterial, Integer> {
 
+    /**
+     * Metoda koja pronalazi sve aktivne materijale za ucenje (materijale koji nisu obrisani)
+     *
+     * @return listu aktivnih materijala za ucenje
+     */
     List<LearningMaterial> findAllByActiveTrue();
 
+    /**
+     * Metoda koja vrsi pretragu materijala za ucenje na osnovu kriterijuma pretrage.
+     *
+     * @param area oblast materijala za ucenje
+     * @param contentType tip sadrzaja materijal za ucenje
+     * @param level nivo materijala za ucenje
+     * @param platform platforma materijala za ucenje
+     * @param technology tehnologija materijala za ucenje
+     * @return lista materijala za ucenje
+     */
     @Query("""
             select o from LearningMaterial o
             where o.active = true

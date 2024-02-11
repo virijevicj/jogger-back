@@ -9,7 +9,6 @@ import com.jogger.rs.user.User;
 import com.jogger.rs.user.UserServiceInterface;
 import com.jogger.rs.user.UserSession;
 import com.jogger.rs.utils.Validator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -17,19 +16,73 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+
+/**
+ * Implementacija servisa koji je zaduzen za rad sa materijalima za ucenje.
+ *
+ * @author Jovan Virijevic
+ */
 @Service
 public class LearningMaterialService implements LearningMaterialServiceInterface{
 
+    /**
+     * Repozitorijum za rad sa materijala sa ucenjem.
+     */
     private LearningMaterialRepository learningMaterialRepository;
+
+    /**
+     * Validator.
+     */
     private Validator validator;
+
+    /**
+     * Servis za rad sa korisnickim sesijama.
+     */
     private SessionManager sessionManager;
+
+    /**
+     * Servis za rad sa korisnicima.
+     */
     private UserServiceInterface userService;
+
+    /**
+     * Servis za rad sa oblastima materijala za ucenje.
+     */
     private AreaService areaService;
+
+    /**
+     * Servis za rad sa platformama materijala za ucenje.
+     */
     private PlatformService platformService;
+
+    /**
+     * Servis za rad sa tehnologijama materijala za ucenje.
+     */
     private TechnologyService technologyService;
+
+    /**
+     * Servis za rad sa tipom sadrzaja materijala za ucenje.
+     */
     private ContentTypeService contentTypeService;
+
+    /**
+     * Servis za rad sa nivoom materijala za ucenje.
+     */
     private LevelService levelService;
 
+    /**
+     * Jovni konstruktor.
+     *
+     * @param learningMaterialRepository repozitorijum za rad sa materijala sa ucenjem
+     * @param validator validator
+     * @param sessionManager servis za rad sa korisnickim sesijama
+     * @param userService servis za rad sa korisnicima
+     * @param areaService servis za rad sa oblastima materijala za ucenje
+     * @param platformService servis za rad sa platformama materijala za ucenje
+     * @param technologyService servis za rad sa tehnologijama materijala za ucenje
+     * @param contentTypeService servis za rad sa tipom sadrzaja materijala za ucenje
+     * @param levelService servis za rad sa nivoom materijala za ucenje
+     */
     public LearningMaterialService(LearningMaterialRepository learningMaterialRepository, Validator validator, SessionManager sessionManager, UserServiceInterface userService, AreaService areaService,
                                    PlatformService platformService, TechnologyService technologyService, ContentTypeService contentTypeService, LevelService levelService) {
         this.learningMaterialRepository = learningMaterialRepository;

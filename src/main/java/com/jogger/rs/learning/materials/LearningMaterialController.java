@@ -15,14 +15,34 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.security.sasl.AuthenticationException;
 
+/**
+ * Kontroler koji je zaduzen za rad sa materijalima za ucenje, odnosno pronalazenje materijala za ucenje.
+ *
+ * @author Jovan Virijevic
+ */
 @RestController
 @RequestMapping(RequestMappingPrefix.LEARNING_MATERIAL)
 public class LearningMaterialController {
-
+    /**
+     * Servis koji je zaduzen za rad sa materijalima za ucenje.
+     */
     private LearningMaterialServiceInterface learningMaterialService;
+    /**
+     * Servis koji je zaduzen za autorizaciju korisnickih zahteva.
+     */
     private AuthManager authManager;
+    /**
+     * Servis koji je zaduzen za kreiranje odgovora na korisnicke zahteve.
+     */
     private ResponseFactory responseFactory;
 
+    /**
+     * Javni konstruktor.
+     *
+     * @param learningMaterialService servis koji je zaduzen za rad sa materijalima za ucenje.
+     * @param authManager servis koji je zaduzen za autorizaciju korisnickih zahteva.
+     * @param responseFactory servis koji je zaduzen za kreiranje odgovora na korisnicke zahteve.
+     */
     @Autowired
     public LearningMaterialController(LearningMaterialServiceInterface learningMaterialService ,AuthManager authManager, ResponseFactory responseFactory) {
         this.learningMaterialService = learningMaterialService;
@@ -30,6 +50,18 @@ public class LearningMaterialController {
         this.responseFactory = responseFactory;
     }
 
+    /**
+     * Metoda koja je zaduzena za pronalazenje svih materijala za ucenje.
+     *
+     * @param request zahtev koji salje klijentska strana.
+     * @param area oblast materijala za ucenje.
+     * @param contentType tip sadrzaja materijala za ucenje.
+     * @param level nivo materijala za ucenje.
+     * @param platform platforma materijala za ucenje.
+     * @param technology tehnologija materijala za ucenje.
+     * @return ResponseEntity<Object> koji se puni podacima u zavisnosti da li je uspesno pronadjen materijal za ucenje.
+     * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji.
+     */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<Object> findAll(HttpServletRequest request,
                                            @RequestParam(name = "area", required = false) AreaName area,
@@ -42,6 +74,14 @@ public class LearningMaterialController {
         return responseFactory.ok(learningMaterialService.findLearningMaterials(area, contentType, level, platform, technology));
     }
 
+    /**
+     * Metoda koja je zaduzena za brisanje materijala za ucenje.
+     *
+     * @param request zahtev koji salje klijentska strana.
+     * @param id id materijala za ucenje.
+     * @return ResponseEntity<Object> koji se puni podacima u zavisnosti da li je uspesno obrisan materijal za ucenje.
+     * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji.
+     */
     @DeleteMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<Object> delete(HttpServletRequest request, @PathVariable(name = "id") Integer id) throws AuthenticationException {
         if (!authManager.auth(request))
@@ -50,6 +90,14 @@ public class LearningMaterialController {
         return responseFactory.ok(SuccessMessage.LM_DELETE_SUCCESS);
     }
 
+    /**
+     * Metoda koja je zaduzena za cuvanje materijala za ucenje.
+     *
+     * @param request zahtev koji salje klijentska strana.
+     * @param newLMDto novi materijal za ucenje.
+     * @return ResponseEntity<Object> koji se puni podacima u zavisnosti da li je uspesno sacuvan materijal za ucenje.
+     * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji.
+     */
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<Object> save(HttpServletRequest request, @RequestBody NewLMDto newLMDto) throws AuthenticationException {
         if (!authManager.auth(request))
