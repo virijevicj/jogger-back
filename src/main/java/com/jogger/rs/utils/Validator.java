@@ -12,22 +12,55 @@ import org.springframework.util.StringUtils;
 
 import java.util.regex.Pattern;
 
+/**
+ * Servis zaduzen za izvrsavanje validacije.
+ *
+ * @author Jovan Virijevic
+ */
 @Component
 @CommonsLog
 public final class Validator {
 
-    // username validacija: najmanje 6 slova, najmanje 1 veliko slovo, najmanje 1 broj
+    /**
+     * Metoda koja validira username korisnika.
+     *
+     * @param username korisnicko ime
+     * @return
+     * <ul>
+     *     <li> true - ako je username validan </li>
+     *     <li> true - ako username nije validan </li>
+     * </ul>
+     */
     public boolean validateUsername(String username) {
         if (!StringUtils.hasText(username) || username.length() < 6) return false;
         return Pattern.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[A-Za-z\\d?\\!\\-\\_\\.]+$", username);
     }
 
-    // ISTO ZA SIFRU: 10 karaktera, najvise 20 i mora da ima neki obavezni specijalni karakter
+    /**
+     * Metoda koja validira lozinku korisnika.
+     *
+     * @param password lozinka
+     * @return
+     * <ul>
+     *     <li> true - ako je lozinka validna </li>
+     *     <li> true - ako lozinka nije validna </li>
+     * </ul>
+     */
     public boolean validatePassword(String password) {
         if (!StringUtils.hasText(password) || (password.length() < 10 && password.length() > 20)) return false;
         return Pattern.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[.,!?-_])[A-Za-z\\d.!?-_]+$", password);
     }
 
+    /**
+     * Metoda koja validira korisnika koji se dodaje u sistem.
+     *
+     * @param user novi korisnik
+     * @return
+     * <ul>
+     *     <li> prazan string - ako je novi korisnik prosao validaciju, odnosno ne postoji poruka greske </li>
+     *     <li> poruku greske - ako korisnik nije prosao validaciju </li>
+     * </ul>
+     */
     public String validateNewUser(UserDto user) {
         StringBuilder errorMessage = new StringBuilder();
         if (!validateUsername(user.getUsername())) errorMessage.append(ErrorMessage.USERNAME_VALIDATION);
@@ -39,10 +72,30 @@ public final class Validator {
         return errorMessage.isEmpty() ? "" : errorMessage.toString();
     }
 
+    /**
+     * Metoda koja validira email korisnika.
+     *
+     * @param email lozinka
+     * @return
+     * <ul>
+     *     <li> true - ako je email validan </li>
+     *     <li> true - ako email nije validan </li>
+     * </ul>
+     */
     public boolean validateEmail(String email) {
         return StringUtils.hasText(email) && Pattern.matches("^[a-zA-Z0-9._-]+@gmail\\.com$", email);
     }
 
+    /**
+     * Metoda koja validira postojeceg korisnika cije se vrednosti menjaju.
+     *
+     * @param user izmenjene vrednosti korisnika
+     * @return
+     * <ul>
+     *     <li> prazan string - ako su izmenjene vrednosti prosle validaciju, odnosno ne postoji poruka greske </li>
+     *     <li> poruku greske - ako izmenjen korisnik nije prosao validaciju </li>
+     * </ul>
+     */
     public String validateEditedUser(UserDto user) {
         StringBuilder errorMessage = new StringBuilder();
         if (StringUtils.hasText(user.getUsername()) && !validateUsername(user.getUsername())) errorMessage.append(ErrorMessage.USERNAME_VALIDATION);
@@ -51,6 +104,16 @@ public final class Validator {
         return errorMessage.isEmpty() ? "" : errorMessage.toString();
     }
 
+    /**
+     * Metoda koja validira novi komentar.
+     *
+     * @param commentDto novi komentar
+     * @return
+     * <ul>
+     *     <li> prazan string - ako je novi komentar prosao validaciju, odnosno ne postoji poruka greske </li>
+     *     <li> poruku greske - ako novi komentar nije prosao validaciju </li>
+     * </ul>
+     */
     public String validateNewComment(NewCommentDto commentDto) {
         StringBuilder errorMessage = new StringBuilder();
         if (!StringUtils.hasText(commentDto.getText())) errorMessage.append(ErrorMessage.NO_TEXT_PRESENT);
@@ -59,6 +122,16 @@ public final class Validator {
         return errorMessage.isEmpty() ? "" : errorMessage.toString();
     }
 
+    /**
+     * Metoda koja validira novi materijal za ucenje.
+     *
+     * @param newLMDto novi materijal za ucenje
+     * @return
+     * <ul>
+     *     <li> prazan string - ako je novi materijal za ucenje prosao validaciju, odnosno ne postoji poruka greske </li>
+     *     <li> poruku greske - ako novi materijal za ucenje nije prosao validaciju </li>
+     * </ul>
+     */
     public String validateNewLM(NewLMDto newLMDto) {
         StringBuilder errorMessage = new StringBuilder();
         if (!StringUtils.hasText(newLMDto.getDescription())) errorMessage.append(ErrorMessage.NO_LM_DESCRIPTION);
