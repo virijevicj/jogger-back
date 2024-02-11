@@ -15,14 +15,43 @@ import org.springframework.util.StringUtils;
 
 import java.util.NoSuchElementException;
 
+/**
+ * Implenetacija servisa koji je zaduzen za dodavanje novih komentara.
+ *
+ * @author Jovan Virijevic
+ */
 @Service
 public class CommentService implements CommentServiceInterface{
-
+    /**
+     * Repozitorijum za komentare.
+     */
     private CommentRepository commentRepository;
+    /**
+     * Validator.
+     */
     private Validator validator;
+    /**
+     * Korsnicki servis.
+     */
     private UserServiceInterface userService;
+    /**
+     * Servis za upravljanje korisnickim sesijama.
+     */
     private SessionManager sessionManager;
+    /**
+     * Servis za materijale za ucenje.
+     */
     private LearningMaterialServiceInterface lmService;
+
+    /**
+     * Javni konstruktor.
+     *
+     * @param commentRepository repozitorijum za komentare.
+     * @param validator validator.
+     * @param userService korsnicki servis.
+     * @param sessionManager servis za upravljanje korisnickim sesijama.
+     * @param lmService servis za materijale za ucenje.
+     */
     @Autowired
     public CommentService(CommentRepository commentRepository, Validator validator, UserServiceInterface userService,
                           SessionManager sessionManager, LearningMaterialServiceInterface lmService) {

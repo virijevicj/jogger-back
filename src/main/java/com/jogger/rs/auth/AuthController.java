@@ -76,7 +76,7 @@ public class AuthController {
      * Metoda koja prihvata korisnicki zahtev da se izvrsi logout
      *
      * @param request zahtev koji salje klijentska strana
-     * @return ResponseObject koji se puni podacima u zavisnosti da li je uspesno izvrsen logout ili ne
+     * @return ResponseEntity<Object> koji se puni podacima u zavisnosti da li je uspesno izvrsen logout ili ne
      * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji
      */
     @PostMapping(value = "/logout", produces = MediaType.APPLICATION_JSON_VALUE)
