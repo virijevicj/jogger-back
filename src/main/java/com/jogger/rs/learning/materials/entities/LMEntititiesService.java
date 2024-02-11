@@ -5,6 +5,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implenetacija servisa koji je zaduzen za pronalazenje entiteta materijala za ucenje.
+ *
+ * @author Jovan Virijevic
+ */
 @Service
 public class LMEntititiesService implements LMEntitiesServiceInterface{
     @Override
