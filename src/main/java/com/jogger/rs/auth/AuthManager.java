@@ -17,7 +17,7 @@ import javax.security.sasl.AuthenticationException;
 import java.util.*;
 
 /**
- * Servis ciji je zadatak da autentifikuje korisnika i autorizuje korisnicke zahteve
+ * Servis ciji je zadatak da autentifikuje korisnika i autorizuje korisnicke zahteve.
  *
  * @author Jovan Virijevic
  */
