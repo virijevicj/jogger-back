@@ -7,12 +7,25 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementacija servisa koji je zaduzen za slanje email poruka.
+ *
+ * @author Jovan Virijevic
+ */
 @Service
 @CommonsLog
 public class EmailService implements EmailServiceInterface{
 
+    /**
+     * Klasa koja je zaduzena za slanje poruka.
+     */
     private JavaMailSender mailSender;
 
+    /**
+     * Javni konstruktor.
+     *
+     * @param mailSender klasa koja je zaduzena za slanje poruka.
+     */
     public EmailService(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
