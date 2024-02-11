@@ -22,19 +22,67 @@ import org.springframework.util.StringUtils;
 
 import java.util.*;
 
+/**
+ * Implementacija servisa zaduzenog za rad sa korisnicima.
+ *
+ * @author Jovan Virijevic
+ */
 @CommonsLog
 @Service
 public class UserService implements UserServiceInterface{
 
+    /**
+     * Servis zaduzen za rad sa korsinicima.
+     */
     private UserRepository userRepository;
+
+    /**
+     * Servis zaduzen za validaciju.
+     */
     private Validator validator;
+
+    /**
+     * Klasa zaduzena za enkriptovanje lozinke korisnika.
+     */
     private PasswordEncoder bcrypt;
+
+    /**
+     * Servis zaduzen za kreiranje tokena nakon login-a
+     */
     private TokenFactory tokenFactory;
+
+    /**
+     * Servis zaduzen za pracenje korisnicke sesije.
+     */
     private SessionManager sessionManager;
+
+    /**
+     * Klasa zaduzena za mapiranje objekata.
+     */
     private ModelMapper modelMapper;
+
+    /**
+     * Servis zaduzen za rad sa ulogama.
+     */
     private RoleServiceInterface roleService;
+
+    /**
+     * Servis zaduzen za slanje mejlova.
+     */
     private EmailServiceInterface emailService;
 
+    /**
+     * Javni konstruktor.
+     *
+     * @param userRepository servis zaduzen za rad sa korsinicima
+     * @param validator servis zaduzen za validaciju
+     * @param bcrypt klasa zaduzena za enkriptovanje lozinke korisnika
+     * @param sessionManager servis zaduzen za pracenje korisnicke sesije
+     * @param tokenFactory servis zaduzen za kreiranje tokena nakon login-a
+     * @param modelMapper klasa zaduzena za mapiranje objekata
+     * @param roleService servis zaduzen za rad sa ulogama
+     * @param emailService servis zaduzen za slanje mejlova
+     */
     @Autowired
     public UserService(UserRepository userRepository, Validator validator, PasswordEncoder bcrypt, SessionManager sessionManager,
                        TokenFactory tokenFactory, ModelMapper modelMapper, RoleServiceInterface roleService, EmailServiceInterface emailService) {
@@ -114,6 +162,13 @@ public class UserService implements UserServiceInterface{
         userRepository.save(user);
         emailService.sendEmailWithUsernameAndPassword(user.getEmail(), user.getUsername(), newUser.getPassword());
     }
+
+    /**
+     * Metoda koja pronalazi uloge za novog korisnika.
+     *
+     * @param newUser nov korisnik
+     * @return List<Role>
+     */
     private List<Role> findUserRoles(UserDto newUser) {
         List<String> roleNames = newUser.getRoles();
         if (!ObjectUtils.isEmpty(roleNames))
@@ -154,6 +209,17 @@ public class UserService implements UserServiceInterface{
         return false;
     }
 
+    /**
+     * Metoda koja menja vrednosti korisnika sa novim vrednostima.
+     *
+     * @param user trenutni korisnik
+     * @param userDto azurirani korisnik
+     * @return
+     * <ul>
+     *     <li> true - ako je korisnik azuriran </li>
+     *     <li> false - ako korisnik nije azuriran </li>
+     * </ul>
+     */
     private boolean updateUserIfNeeded(User user, UserDto userDto) {
         // fizikalisanje :(
         boolean isUpdated = false;
