@@ -13,7 +13,7 @@ public interface LMEntitiesServiceInterface {
     /**
      * Motoda koja je zaduzena za pronalazenje svih entiteta materijala za ucenje.
      *
-     * @return LMEntitiesDto.
+     * @return LMEntitiesDto
      */
     LMEntitiesDto findAll();
 }

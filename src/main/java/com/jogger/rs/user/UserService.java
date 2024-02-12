@@ -167,7 +167,7 @@ public class UserService implements UserServiceInterface{
      * Metoda koja pronalazi uloge za novog korisnika.
      *
      * @param newUser nov korisnik
-     * @return List<Role>
+     * @return listu uloga u sistemu
      */
     private List<Role> findUserRoles(UserDto newUser) {
         List<String> roleNames = newUser.getRoles();

@@ -57,7 +57,7 @@ public class CommentController {
      *
      * @param request zahtev koji salje klijentska strana.
      * @param commentDto novi komentar.
-     * @return ResponseEntity<Object> koji se puni podacima u zavisnosti da li je uspesno dodat komentar.
+     * @return StandardResponseDto
      * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji.
      */
     @PostMapping(name = "/", produces = MediaType.APPLICATION_JSON_VALUE)

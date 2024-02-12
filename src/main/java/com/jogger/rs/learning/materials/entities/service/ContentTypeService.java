@@ -34,7 +34,7 @@ public class ContentTypeService {
     /**
      * Metoda koja pronalazi tip sadrzaja materijala za ucenje na osnovu imena.
      * @param name ime tipa sadrzaja
-     * @return Optional<ContentType>
+     * @return tip sadrzaja materijala za ucenje
      */
     public Optional<ContentType> findByName(ContentTypeName name) {
         return repository.findByName(name);

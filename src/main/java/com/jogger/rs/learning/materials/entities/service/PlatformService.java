@@ -33,7 +33,7 @@ public class PlatformService {
     /**
      * Metoda koja pronalazi platforme materijala za ucenje na osnovu imena.
      * @param name ime platforme
-     * @return Optional<Platform>
+     * @return platforma materijala za ucenje
      */
     public Optional<Platform> findByName(PlatformName name) {
         return repository.findByName(name);

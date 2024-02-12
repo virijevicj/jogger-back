@@ -38,7 +38,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     /**
      * Metoda koja hvata izuzetak IllegalArgumentException i vraca odgovarajuci response.
      * @param exception uhvacen izuzetak.
-     * @return ResponseEntity<Object>
+     * @return StandardResponseDto
      */
     @ExceptionHandler(value = {IllegalArgumentException.class})
     public @ResponseBody ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException exception) {
@@ -48,7 +48,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     /**
      * Metoda koja hvata izuzetak NoSuchElementException i vraca odgovarajuci response.
      * @param exception uhvacen izuzetak.
-     * @return ResponseEntity<Object>
+     * @return StandardResponseDto
      */
     @ExceptionHandler(value = {NoSuchElementException.class})
     public @ResponseBody ResponseEntity<Object>  handleNoSuchElementException(NoSuchElementException exception) {
@@ -58,7 +58,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     /**
      * Metoda koja hvata izuzetak AuthenticationException i vraca odgovarajuci response.
      * @param exception uhvacen izuzetak.
-     * @return ResponseEntity<Object>
+     * @return StandardResponseDto
      */
     @ExceptionHandler(value = {AuthenticationException.class})
     public @ResponseBody ResponseEntity<Object>  handleAuthenticationException(AuthenticationException exception) {
@@ -68,7 +68,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     /**
      * Metoda koja hvata izuzetak RuntimeException i vraca odgovarajuci response.
      * @param exception uhvacen izuzetak.
-     * @return ResponseEntity<Object>
+     * @return StandardResponseDto
      */
     @ExceptionHandler(value = {RuntimeException.class})
     public @ResponseBody ResponseEntity<Object> handleRunTimeException(RuntimeException exception) {

@@ -19,7 +19,7 @@ public interface UserServiceInterface {
      * Metoda koja prijavljuje korisnika na sistem.
      *
      * @param loginRequestDto username i lozinka za prijavljivanje
-     * @return Optional<LoginResponseDto>
+     * @return LoginResponseDto
      * @throws IllegalArgumentException ako parametri logovanja nisu validni
      * @throws NoSuchElementException ako nije pronadjen korisnik sa datim parametrima logovanja
      */
@@ -35,7 +35,7 @@ public interface UserServiceInterface {
     /**
      * Metoda koja pronalazi sve korisnike u sistemu (aktivne + obrisane)
      *
-     * @return List<User>
+     * @return listu korisnika sistema
      */
     List<User> findAll();
 
@@ -43,7 +43,7 @@ public interface UserServiceInterface {
      * Metoda koja pronalazi aktivnog korisnika na osnovu kljuca.
      *
      * @param id kljuc korisnika
-     * @return Optional<User>
+     * @return korisnik sistema
      */
     Optional<User> findById(Integer id);
 

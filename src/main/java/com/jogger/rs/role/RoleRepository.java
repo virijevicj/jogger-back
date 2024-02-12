@@ -15,7 +15,7 @@ public interface RoleRepository extends JpaRepository<Role, Integer> {
      * Metoda koja pronalazi uloge u sistemu na osnovu liste imena uloga
      *
      * @param roleNames lista imena uloga
-     * @return List<Role>
+     * @return listu rola u sistemu
      */
     @Query("""
             select o from Role o

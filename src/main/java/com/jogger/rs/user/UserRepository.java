@@ -20,7 +20,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * Metoda koja pronalazi aktivnog korisnika na osnovu username-a.
      *
      * @param username korisnicko ime
-     * @return Optional<User>
+     * @return korisnik sistema
      */
     Optional<User> findByUsernameAndActiveTrue(String username);
 
@@ -28,7 +28,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * Metoda koja pronalazi aktivnog korisnika na osnovu kljuca.
      *
      * @param id jedinstveni identifikator korisnika
-     * @return Optional<User>
+     * @return korisnik sistema
      */
     Optional<User> findByKeyUserAndActiveTrue(Integer id);
 }

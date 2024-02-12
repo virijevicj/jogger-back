@@ -59,7 +59,7 @@ public class LearningMaterialController {
      * @param level nivo materijala za ucenje.
      * @param platform platforma materijala za ucenje.
      * @param technology tehnologija materijala za ucenje.
-     * @return ResponseEntity<Object> koji se puni podacima u zavisnosti da li je uspesno pronadjen materijal za ucenje.
+     * @return StandardResponseDto
      * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji.
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -79,7 +79,7 @@ public class LearningMaterialController {
      *
      * @param request zahtev koji salje klijentska strana.
      * @param id id materijala za ucenje.
-     * @return ResponseEntity<Object> koji se puni podacima u zavisnosti da li je uspesno obrisan materijal za ucenje.
+     * @return StandardResponseDto
      * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji.
      */
     @DeleteMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -95,7 +95,7 @@ public class LearningMaterialController {
      *
      * @param request zahtev koji salje klijentska strana.
      * @param newLMDto novi materijal za ucenje.
-     * @return ResponseEntity<Object> koji se puni podacima u zavisnosti da li je uspesno sacuvan materijal za ucenje.
+     * @return StandardResponseDto
      * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji.
      */
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)

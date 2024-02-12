@@ -33,7 +33,7 @@ public class TechnologyService {
     /**
      * Metoda koja pronalazi tip sadrzaja materijala za ucenje na osnovu imena.
      * @param name ime tehnologije
-     * @return Optional<Technology>
+     * @return tehnologija materijala za ucenje
      */
     public Optional<Technology> findByName(TechnologyName name) {
         return repository.findByName(name);

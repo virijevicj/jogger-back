@@ -18,7 +18,7 @@ public interface LevelRepository extends JpaRepository<Level, Integer> {
     /**
      * Metoda koja pronalazi nivoe materijala za ucenje na osnovu imena.
      * @param name ime nivoa
-     * @return Optional<Level>
+     * @return nivo materijala za ucenje
      */
     Optional<Level> findByName(LevelName name);
 }

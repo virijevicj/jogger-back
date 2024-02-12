@@ -55,7 +55,7 @@ public class LMEntitiesController {
     /**
      * Metoda koja je zaduzena za pronalazenje svih entiteta materijala za ucenje.
      * @param request zahtev koji salje klijentska strana.
-     * @return ResponseEntity<Object> koji se puni podacima u zavisnosti da li su uspesno pronadjeni entiteti.
+     * @return StandardResponseDto
      * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji.
      */
     @GetMapping(name = "/", produces = MediaType.APPLICATION_JSON_VALUE)

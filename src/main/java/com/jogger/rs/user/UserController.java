@@ -67,7 +67,7 @@ public class UserController {
      * Metoda koja pronalazi sve korisnike u sistemu (aktivne + obrisane)
      *
      * @param request korisnicki zahtev
-     * @return ResponseEntity<Object>
+     * @return StandardResponseDto
      * @throws AuthenticationException ako korisnik nema pravo da pristupi resursu na datoj putanji
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -87,7 +87,7 @@ public class UserController {
      *
      * @param request korisnicki zahtev
      * @param id jedinstveni identifikator korisnika
-     * @return ResponseEntity<Object>
+     * @return StandardResponseDto
      * @throws AuthenticationException ako korisnik nema pravo da pristupi resursu na datoj putanji
      */
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -103,7 +103,7 @@ public class UserController {
      *
      * @param request korisnicki zahtev
      * @param id jedinstveni identifikator korisnika
-     * @return ResponseEntity<Object>
+     * @return StandardResponseDto
      * @throws AuthenticationException ako korisnik nema pravo da pristupi resursu na datoj putanji
      */
     @DeleteMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -119,7 +119,7 @@ public class UserController {
      *
      * @param request korisnicki zahtev
      * @param newUser novi korisnik
-     * @return ResponseEntity<Object>
+     * @return StandardResponseDto
      * @throws AuthenticationException ako korisnik nema pravo da pristupi resursu na datoj putanji
      */
     @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -136,7 +136,7 @@ public class UserController {
      *
      * @param request korisnicki zahtev
      * @param user korisnik
-     * @return ResponseEntity<Object>
+     * @return StandardResponseDto
      * @throws AuthenticationException ako korisnik nema pravo da pristupi resursu na datoj putanji
      */
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)

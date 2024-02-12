@@ -16,7 +16,7 @@ public interface ContentTypeRepository extends JpaRepository<ContentType, Intege
     /**
      * Metoda koja pronalazi oblast materijala za ucenje na osnovu imena.
      * @param name ime tipa sadrzaja
-     * @return Optional<ContentType>
+     * @return tip sadrzaja materijala za ucenje
      */
     Optional<ContentType> findByName(ContentTypeName name);
 }

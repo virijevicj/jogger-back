@@ -60,7 +60,7 @@ public class AuthController {
      *
      * @param request zahtev koji salje klijentska strana
      * @param loginRequestDto objekat koji sadrzi username i password potreban za login
-     * @return ResponseObject koji se puni podacima u zavisnosti da li je uspesno izvrsen login ili ne
+     * @return StandardResponseDto koji se puni podacima u zavisnosti da li je uspesno izvrsen login ili ne
      * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji
      */
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -76,7 +76,7 @@ public class AuthController {
      * Metoda koja prihvata korisnicki zahtev da se izvrsi logout
      *
      * @param request zahtev koji salje klijentska strana
-     * @return ResponseEntity<Object> koji se puni podacima u zavisnosti da li je uspesno izvrsen logout ili ne
+     * @return StandardResponseDto koji se puni podacima u zavisnosti da li je uspesno izvrsen logout ili ne
      * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji
      */
     @PostMapping(value = "/logout", produces = MediaType.APPLICATION_JSON_VALUE)

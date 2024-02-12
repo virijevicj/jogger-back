@@ -18,7 +18,7 @@ public interface PlatformRepository extends JpaRepository<Platform, Integer> {
     /**
      * Metoda koja pronalazi platforme materijala za ucenje na osnovu imena.
      * @param name ime platforme
-     * @return Optional<Platform>
+     * @return platforma materijala za ucenje
      */
     Optional<Platform> findByName(PlatformName name);
 }

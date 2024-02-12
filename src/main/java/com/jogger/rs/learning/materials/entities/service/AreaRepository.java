@@ -18,7 +18,7 @@ public interface AreaRepository extends JpaRepository<Area, Integer> {
     /**
      * Metoda koja pronalazi oblast materijala za ucenje na osnovu imena.
      * @param name ime oblasti
-     * @return Optional<Area>
+     * @return oblast materijala za ucenej
      */
     Optional<Area> findByName(AreaName name);
 }

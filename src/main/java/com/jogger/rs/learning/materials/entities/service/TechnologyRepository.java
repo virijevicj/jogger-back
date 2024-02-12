@@ -18,7 +18,7 @@ public interface TechnologyRepository extends JpaRepository<Technology, Integer>
     /**
      * Metoda koja pronalazi tehnologiju materijala za ucenje na osnovu imena.
      * @param name ime tehnologije
-     * @return Optional<Technology>
+     * @return tehnologija materijala za ucenje
      */
     Optional<Technology> findByName(TechnologyName name);
 }

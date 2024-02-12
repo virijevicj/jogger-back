@@ -32,7 +32,7 @@ public class LevelService {
     /**
      * Metoda koja pronalazi nivo materijala za ucenje na osnovu imena.
      * @param name ime nivoa
-     * @return Optional<Level>
+     * @return nivo materijala za ucenje
      */
     public Optional<Level> findByName(LevelName name) {
         return repository.findByName(name);

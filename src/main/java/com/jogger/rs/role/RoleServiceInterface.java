@@ -12,7 +12,7 @@ public interface RoleServiceInterface {
     /**
      * Metoda koja pronalazi sve uloge u sistemu.
      *
-     * @return List<Role>
+     * @return listu rola u sistemu
      */
     List<Role> findAll();
 
@@ -20,7 +20,7 @@ public interface RoleServiceInterface {
      * Metoda koja pronalazi uloge na osnovu liste imena.
      *
      * @param roleNames lista imena uloga.
-     * @return List<Role>
+     * @return listu rola u sistemu
      */
     List<Role> findRolesByNames(List<String> roleNames);
 }
