@@ -194,6 +194,17 @@ public class UserService implements UserServiceInterface{
         return userUpdated || userRolesUpdated;
     }
 
+    /**
+     * Metoda koja azurira korisnicke uloge ako je to potrebno.
+     *
+     * @param user trenutni korisnik
+     * @param userDto azurirani korisnik
+     * @return
+     * <ul>
+     *     <li> true - ako su uloge azurirane </li>
+     *     <li> false - ako uloge nisu azurirane </li>
+     * </ul>
+     */
     private boolean updateUserRolesIfNeeded(User user, UserDto userDto) {
         List<String> newRoles = userDto.getRoles();
         if (newRoles == null) return false; // nije moguce da user nema nijednu ulogu u sistemu!!!
