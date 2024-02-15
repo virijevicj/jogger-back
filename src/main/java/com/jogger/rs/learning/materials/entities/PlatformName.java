@@ -6,8 +6,21 @@ package com.jogger.rs.learning.materials.entities;
  * @author Jovan Virijevic
  */
 public enum PlatformName {
-    Udemy,
+    /**
+     * Placen resurs - potreban nalog
+     */
     Coursera,
-    Youtube,
-    Google
+    /**
+     * Besplatan resurs
+     */
+    Google,
+    /**
+     * Placen resurs - potreban nalog
+     */
+    Udemy,
+    /**
+     * Besplatan resurs
+     */
+    Youtube
+
 }

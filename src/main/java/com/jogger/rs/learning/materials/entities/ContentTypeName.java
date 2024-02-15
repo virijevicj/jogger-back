@@ -6,7 +6,17 @@ package com.jogger.rs.learning.materials.entities;
  * @author Jovan Virijevic
  */
 public enum ContentTypeName {
-    Video,
+    /**
+     * Sadrzaj u audio formatu
+     */
     Audio,
-    Tekstualni
+    /**
+     * Sadrzaj u tekstualnom formatu
+     */
+    Tekstualni,
+    /**
+     * Sadrzaj u video formatu
+     */
+    Video
+
 }

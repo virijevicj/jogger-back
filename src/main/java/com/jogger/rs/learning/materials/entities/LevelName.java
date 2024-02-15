@@ -6,7 +6,16 @@ package com.jogger.rs.learning.materials.entities;
  * @author Jovan Virijevic
  */
 public enum LevelName {
+    /**
+     * Nivo za napredne koncepte
+     */
+    Napredni,
+    /**
+     * Nivo namenjen za novajlije
+     */
     Pocetni,
-    Srednji,
-    Napredni
+    /**
+     * Nivo namenjen za one sa odredjenim predznanjem
+     */
+    Srednji
 }
