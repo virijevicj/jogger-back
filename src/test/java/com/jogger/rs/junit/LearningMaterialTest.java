@@ -7,15 +7,15 @@ import org.junit.jupiter.api.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 /**
- * Klasa u kojoj pisemo testove kako bi proverili lombok anotacije koje koristimo u projektu.
- * Pokazni primer bice klasa LearningMaterial
+ * Klasa u kojoj pisemo testove za klasu LearninMaterial
  *
  * @author Jovan Virijevic
  */
 
-public class LombokTest {
+public class LearningMaterialTest {
 
     LearningMaterial lm;
 
@@ -30,28 +30,34 @@ public class LombokTest {
     }
 
     @Test
-    @DisplayName("LombokTest - setDescription")
+    @DisplayName("LearningMaterialTest - noArgsConstructor")
+    void noArgsConstructor() {
+        assertInstanceOf(LearningMaterial.class, lm);
+    }
+
+    @Test
+    @DisplayName("LearninMaterialTest - setDescription")
     void setDescription() {
         lm.setDescription("description");
         assertEquals(lm.getDescription(), "description");
     }
 
     @Test
-    @DisplayName("LombokTest - setLink")
+    @DisplayName("LearninMaterialTest - setLink")
     void setLink() {
         lm.setLink("link");
         assertEquals(lm.getLink(), "link");
     }
 
     @Test
-    @DisplayName("LombokTest - setActive")
+    @DisplayName("LearninMaterialTest - setActive")
     void setActive() {
         lm.setActive(true);
         assertTrue(lm.getActive());
     }
 
     @Test
-    @DisplayName("LombokTest - setArea")
+    @DisplayName("LearninMaterialTest - setArea")
     void setArea() {
         Area area = new Area();
         area.setKeyarea(1);
@@ -65,7 +71,7 @@ public class LombokTest {
     }
 
     @Test
-    @DisplayName("LombokTest - setContentType")
+    @DisplayName("LearninMaterialTest - setContentType")
     void setContentType() {
         ContentType contentType = new ContentType();
         contentType.setKeyContentType(1);
@@ -79,7 +85,7 @@ public class LombokTest {
     }
 
     @Test
-    @DisplayName("LombokTest - setLevel")
+    @DisplayName("LearninMaterialTest - setLevel")
     void setLevel() {
         Level level = new Level();
         level.setKeyLevel(1);
@@ -93,7 +99,7 @@ public class LombokTest {
     }
 
     @Test
-    @DisplayName("LombokTest - setPlatform")
+    @DisplayName("LearninMaterialTest - setPlatform")
     void setPlatform() {
         Platform platform = new Platform();
         platform.setKeyPlatform(1);
@@ -107,7 +113,7 @@ public class LombokTest {
     }
 
     @Test
-    @DisplayName("LombokTest - setTechnology")
+    @DisplayName("LearninMaterialTest - setTechnology")
     void setTechnology() {
         Technology technology = new Technology();
         technology.setKeyTechnology(1);
@@ -121,7 +127,7 @@ public class LombokTest {
     }
 
     @Test
-    @DisplayName("LombokTest - setComments")
+    @DisplayName("LearninMaterialTest - setComments")
     void setComments() {
         Comment comment1 = new Comment();
         comment1.setGrade(10);
@@ -134,7 +140,7 @@ public class LombokTest {
     }
 
     @Test
-    @DisplayName("LombokTest - toStringLM")
+    @DisplayName("LearninMaterialTest - toStringLM")
     void toStringLM() {
         lm.setLink("link");
         lm.setDescription("description");
@@ -143,4 +149,5 @@ public class LombokTest {
         assertTrue(lm.toString().contains("description"));
         assertTrue(lm.toString().contains("false"));
     }
+
 }
