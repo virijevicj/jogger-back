@@ -1,5 +1,8 @@
 package com.jogger.rs.dto;
 
+import com.jogger.rs.labels.JakartaValidationErrorMessages;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.List;
@@ -19,6 +22,8 @@ public class UserDto {
     /**
      * Jedinstveni identifikator korisnika u sistemu.
      */
+    @Min(value = 1, message = JakartaValidationErrorMessages.ID_GREATER_THAN_ZERO)
+    @NotNull(message = JakartaValidationErrorMessages.ID_NOT_FOUND)
     private Integer keyUser;
 
     /**
@@ -54,6 +59,6 @@ public class UserDto {
     /**
      * Lista uloga koje korisnik ima u sistemu.
      */
-    List<String> roles;
+    private List<String> roles;
 
 }

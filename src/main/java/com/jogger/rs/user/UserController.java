@@ -10,6 +10,7 @@ import com.jogger.rs.role.Role;
 import com.jogger.rs.role.RoleServiceInterface;
 import com.jogger.rs.utils.ResponseFactory;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -140,11 +141,11 @@ public class UserController {
      * @throws AuthenticationException ako korisnik nema pravo da pristupi resursu na datoj putanji
      */
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    private @ResponseBody ResponseEntity<Object> update(HttpServletRequest request, @RequestBody UserDto user) throws AuthenticationException {
+    private @ResponseBody ResponseEntity<Object> update(HttpServletRequest request, @Valid @RequestBody UserDto user) throws AuthenticationException {
         if (!authManager.auth(request)) {
             return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
         }
-        String token = request.getHeader("Cookie");
+        String token = request.getHeader("Token");
         String message = userService.update(user, token) ? SuccessMessage.USER_UPDATE_SUCCESS : SuccessMessage.USER_UPDATE_SUCCESS_BUT_NOTHING_WAs_DIFFERENT ;
         return responseFactory.ok(message + user.getKeyUser());
     }

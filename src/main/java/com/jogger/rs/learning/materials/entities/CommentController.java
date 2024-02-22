@@ -7,6 +7,7 @@ import com.jogger.rs.labels.RequestMappingPrefix;
 import com.jogger.rs.labels.SuccessMessage;
 import com.jogger.rs.utils.ResponseFactory;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -61,7 +62,7 @@ public class CommentController {
      * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji.
      */
     @PostMapping(name = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    private ResponseEntity<Object> saveComment(HttpServletRequest request, @RequestBody NewCommentDto commentDto) throws AuthenticationException {
+    private ResponseEntity<Object> saveComment(HttpServletRequest request, @Valid @RequestBody NewCommentDto commentDto) throws AuthenticationException {
         if (!authManager.auth(request))
             return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
         commentService.save(commentDto, request.getHeader("Token"));

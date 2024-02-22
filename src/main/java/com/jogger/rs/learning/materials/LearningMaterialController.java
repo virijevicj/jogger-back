@@ -8,6 +8,7 @@ import com.jogger.rs.labels.SuccessMessage;
 import com.jogger.rs.learning.materials.entities.*;
 import com.jogger.rs.utils.ResponseFactory;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -99,7 +100,7 @@ public class LearningMaterialController {
      * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji.
      */
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    private ResponseEntity<Object> save(HttpServletRequest request, @RequestBody NewLMDto newLMDto) throws AuthenticationException {
+    private ResponseEntity<Object> save(HttpServletRequest request, @Valid @RequestBody NewLMDto newLMDto) throws AuthenticationException {
         if (!authManager.auth(request))
             return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
         learningMaterialService.save(newLMDto, request.getHeader("Token"));

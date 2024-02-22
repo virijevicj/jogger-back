@@ -101,7 +101,6 @@ public class UserService implements UserServiceInterface{
         if (ObjectUtils.isEmpty(loginRequestDto))
                 throw new IllegalArgumentException(ErrorMessage.EMPTY_REQUEST_BODY + loginRequestDto.getClass().getName());
         String username = loginRequestDto.getUsername();
-        log.info("pokusava da se uloguje sa imenom " + username + " i sifrom " + loginRequestDto.getPassword());
         if (!validator.validateUsername(username))
             throw new IllegalArgumentException(ErrorMessage.USERNAME_VALIDATION);
         String password = loginRequestDto.getPassword();

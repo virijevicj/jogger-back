@@ -3,10 +3,14 @@ package com.jogger.rs.exception;
 import com.jogger.rs.utils.ResponseFactory;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.security.sasl.AuthenticationException;
@@ -65,6 +69,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         // NO_TOKEN_FOUND - > UNAUTHORIZED
         return responseFactory.unauthorized(exception.getMessage());
     }
+
     /**
      * Metoda koja hvata izuzetak RuntimeException i vraca odgovarajuci response.
      * @param exception uhvacen izuzetak.
@@ -74,5 +79,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public @ResponseBody ResponseEntity<Object> handleRunTimeException(RuntimeException exception) {
         log.error(exception.getMessage());
         return responseFactory.somethingWentWrong(exception.getMessage());
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        StringBuilder errors = new StringBuilder();
+        ex.getBindingResult().getFieldErrors().forEach(fieldError -> {
+            errors.append(fieldError.getDefaultMessage()).append(" ");
+        });
+        return responseFactory.badRequest(errors.toString());
     }
 }

@@ -8,14 +8,13 @@ import com.jogger.rs.labels.SuccessMessage;
 import com.jogger.rs.user.UserServiceInterface;
 import com.jogger.rs.utils.ResponseFactory;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.security.sasl.AuthenticationException;
-import java.util.Optional;
 
 /**
  * Kontroler koji prihvata zahteve vezane za autentifikaciju korisnika, odnosno login i logout funkcionalnosti sistema.
@@ -64,7 +63,7 @@ public class AuthController {
      * @throws AuthenticationException ako korisnik nema pravo da pristupi datoj putanji
      */
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
-    private @ResponseBody ResponseEntity<Object> login(HttpServletRequest request, @RequestBody LoginRequestDto loginRequestDto) throws AuthenticationException {
+    private @ResponseBody ResponseEntity<Object> login(HttpServletRequest request, @Valid @RequestBody LoginRequestDto loginRequestDto) throws AuthenticationException {
         if (!authManager.auth(request))
             return responseFactory.forbidden(ErrorMessage.ACCESS_FORBIDDEN + request.getRequestURI());
         LoginResponseDto responseDto = userService.login(loginRequestDto)
