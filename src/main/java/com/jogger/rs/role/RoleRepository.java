@@ -11,6 +11,7 @@ import java.util.List;
  * @author Jovan Virijevic
  */
 public interface RoleRepository extends JpaRepository<Role, Integer> {
+
     /**
      * Metoda koja pronalazi uloge u sistemu na osnovu liste imena uloga
      *

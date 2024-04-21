@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.security.sasl.AuthenticationException;
@@ -24,20 +26,6 @@ import java.util.NoSuchElementException;
 @CommonsLog
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-    /**
-     * Servis koja je zaduzen za kreiranje odgovora korisniku.
-     */
-    private ResponseFactory responseFactory;
-
-    /**
-     * Javni konstruktor.
-     *
-     * @param responseFactory servis koja je zaduzen za kreiranje odgovora korisniku.
-     */
-    @Autowired
-    public GlobalExceptionHandler(ResponseFactory responseFactory) {
-        this.responseFactory = responseFactory;
-    }
 
     /**
      * Metoda koja hvata izuzetak IllegalArgumentException i vraca odgovarajuci response.
@@ -46,7 +34,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(value = {IllegalArgumentException.class})
     public @ResponseBody ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException exception) {
-        return responseFactory.badRequest(exception.getMessage());
+        return ResponseFactory.badRequest(exception.getMessage());
     }
 
     /**
@@ -56,7 +44,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(value = {NoSuchElementException.class})
     public @ResponseBody ResponseEntity<Object>  handleNoSuchElementException(NoSuchElementException exception) {
-        return responseFactory.notFound(exception.getMessage());
+        return ResponseFactory.notFound(exception.getMessage());
     }
 
     /**
@@ -67,7 +55,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {AuthenticationException.class})
     public @ResponseBody ResponseEntity<Object>  handleAuthenticationException(AuthenticationException exception) {
         // NO_TOKEN_FOUND - > UNAUTHORIZED
-        return responseFactory.unauthorized(exception.getMessage());
+        return ResponseFactory.unauthorized(exception.getMessage());
     }
 
     /**
@@ -78,7 +66,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {RuntimeException.class})
     public @ResponseBody ResponseEntity<Object> handleRunTimeException(RuntimeException exception) {
         log.error(exception.getMessage());
-        return responseFactory.somethingWentWrong(exception.getMessage());
+        return ResponseFactory.somethingWentWrong();
     }
 
     @Override
@@ -87,6 +75,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ex.getBindingResult().getFieldErrors().forEach(fieldError -> {
             errors.append(fieldError.getDefaultMessage()).append(" ");
         });
-        return responseFactory.badRequest(errors.toString());
+        return ResponseFactory.badRequest(errors.toString());
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        return ResponseFactory.notFound("nepostojeca putanja!!!");
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        return ResponseFactory.badRequest("los korisnicki zahtev!!!");
     }
 }

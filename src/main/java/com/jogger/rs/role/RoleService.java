@@ -1,6 +1,6 @@
 package com.jogger.rs.role;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,22 +11,13 @@ import java.util.List;
  * @author Jovan Virijevic
  */
 @Service
+@RequiredArgsConstructor
 public class RoleService implements RoleServiceInterface{
 
     /**
      * Repozitorijum za rad sa ulogama.
      */
-    private RoleRepository roleRepository;
-
-    /**
-     * Javni konstruktor.
-     *
-     * @param roleRepository repozitorijum za rad sa ulogama
-     */
-    @Autowired
-    public RoleService(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
+    private final RoleRepository roleRepository;
 
     @Override
     public List<Role> findAll() {

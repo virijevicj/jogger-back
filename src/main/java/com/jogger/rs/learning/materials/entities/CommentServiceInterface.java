@@ -12,7 +12,6 @@ public interface CommentServiceInterface {
      * Motoda koja je zaduzena za dodavanje novih komentara.
      *
      * @param commentDto novi komentar.
-     * @param token jedinstveni identifikator korisnika.
      */
-    void save(NewCommentDto commentDto, String token);
+    void save(NewCommentDto commentDto);
 }

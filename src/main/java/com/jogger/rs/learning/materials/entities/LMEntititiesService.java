@@ -12,6 +12,7 @@ import java.util.List;
  */
 @Service
 public class LMEntititiesService implements LMEntitiesServiceInterface{
+
     @Override
     public LMEntitiesDto findAll() {
         return LMEntitiesDto.builder()

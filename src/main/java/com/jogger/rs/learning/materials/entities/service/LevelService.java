@@ -2,7 +2,7 @@ package com.jogger.rs.learning.materials.entities.service;
 
 import com.jogger.rs.learning.materials.entities.Level;
 import com.jogger.rs.learning.materials.entities.LevelName;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,21 +13,13 @@ import java.util.Optional;
  * @author Jovan Virijevic
  */
 @Service
+@RequiredArgsConstructor
 public class LevelService {
+
     /**
      * Repozitorijum za rad sa nivoima materijala za ucenje.
      */
-    private LevelRepository repository;
-
-    /**
-     * Javni kosntruktor.
-     *
-     * @param repository repozitorijum za rad sa nivoima materijala za ucenje
-     */
-    @Autowired
-    public LevelService(LevelRepository repository) {
-        this.repository = repository;
-    }
+    private final LevelRepository repository;
 
     /**
      * Metoda koja pronalazi nivo materijala za ucenje na osnovu imena.

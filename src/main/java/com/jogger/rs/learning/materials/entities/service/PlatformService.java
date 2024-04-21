@@ -2,7 +2,7 @@ package com.jogger.rs.learning.materials.entities.service;
 
 import com.jogger.rs.learning.materials.entities.Platform;
 import com.jogger.rs.learning.materials.entities.PlatformName;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,22 +13,13 @@ import java.util.Optional;
  * @author Jovan Virijevic
  */
 @Service
+@RequiredArgsConstructor
 public class PlatformService {
 
     /**
      * Repozitorijum za rad sa platformama materijala za ucenje.
      */
-    private PlatformRepository repository;
-
-    /**
-     * Javni konstruktor.
-     *
-     * @param repository repozitorijum za rad sa platformama materijala za ucenje.
-     */
-    @Autowired
-    public PlatformService(PlatformRepository repository) {
-        this.repository = repository;
-    }
+    private final PlatformRepository repository;
 
     /**
      * Metoda koja pronalazi platforme materijala za ucenje na osnovu imena.

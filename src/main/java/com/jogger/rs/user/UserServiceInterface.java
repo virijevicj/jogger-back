@@ -26,13 +26,6 @@ public interface UserServiceInterface {
     Optional<LoginResponseDto> login(LoginRequestDto loginRequestDto) throws IllegalArgumentException, NoSuchElementException;
 
     /**
-     * Metoda koja odjavljuje korisnika sa sistema.
-     *
-     * @param token jedinstveni identifikator ulogovanog korisnika
-     */
-    void logout(String token);
-
-    /**
      * Metoda koja pronalazi sve korisnike u sistemu (aktivne + obrisane)
      *
      * @return listu korisnika sistema
@@ -67,12 +60,11 @@ public interface UserServiceInterface {
      * Metoda koja azurira korisnika.
      *
      * @param user azurirani korisnik
-     * @param token jedinstveni identifikator ulogovanog korisnika
      * @return
      * <ul>
      *     <li> true - ako je korisnik azuriran </li>
      *     <li> false - ako korisnik nije azuriran </li>
      * </ul>
      */
-    boolean update(UserDto user, String token);
+    boolean update(UserDto user);
 }

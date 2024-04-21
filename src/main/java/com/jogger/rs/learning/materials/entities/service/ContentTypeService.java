@@ -2,8 +2,7 @@ package com.jogger.rs.learning.materials.entities.service;
 
 import com.jogger.rs.learning.materials.entities.ContentType;
 import com.jogger.rs.learning.materials.entities.ContentTypeName;
-import com.jogger.rs.learning.materials.entities.Level;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,22 +13,13 @@ import java.util.Optional;
  * @author Jovan Virijevic
  */
 @Service
+@RequiredArgsConstructor
 public class ContentTypeService {
 
     /**
      * Repozitorijum za rad sa tipovima sadrzaja materijala za ucenje.
      */
-    private ContentTypeRepository repository;
-
-    /**
-     * Javni konstruktor.
-     *
-     * @param repository repozitorijum za rad sa tipovima sadrzaja materijala za ucenje
-     */
-    @Autowired
-    public ContentTypeService(ContentTypeRepository repository) {
-        this.repository = repository;
-    }
+    private final ContentTypeRepository repository;
 
     /**
      * Metoda koja pronalazi tip sadrzaja materijala za ucenje na osnovu imena.

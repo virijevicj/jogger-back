@@ -2,7 +2,7 @@ package com.jogger.rs.learning.materials.entities.service;
 
 import com.jogger.rs.learning.materials.entities.Area;
 import com.jogger.rs.learning.materials.entities.AreaName;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,22 +13,13 @@ import java.util.Optional;
  * @author Jovan Virijevic
  */
 @Service
+@RequiredArgsConstructor
 public class AreaService {
 
     /**
      * Repozitorijum za rad sa oblastima materijala za ucenje.
      */
-    private AreaRepository repository;
-
-    /**
-     * Javni konstruktor.
-     *
-     * @param repository repozitorijum za rad sa oblastima materijala za ucenje
-     */
-    @Autowired
-    public AreaService(AreaRepository repository) {
-        this.repository = repository;
-    }
+    private final AreaRepository repository;
 
     /**
      * Metoda koja pronalazi oblast materijala za ucenje na osnovu imena.

@@ -46,7 +46,6 @@ public interface LearningMaterialServiceInterface {
      * Metoda koja dodaje novi materijal za ucenje.
      *
      * @param newLMDto novi materijal za ucenje
-     * @param token jedinstveni identifikator korisnika
      */
-    void save(NewLMDto newLMDto, String token);
+    void save(NewLMDto newLMDto);
 }

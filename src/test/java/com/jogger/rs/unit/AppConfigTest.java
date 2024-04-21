@@ -1,6 +1,5 @@
-package com.jogger.rs.junit;
+package com.jogger.rs.unit;
 
-import com.jogger.rs.auth.SessionManager;
 import com.jogger.rs.config.AppConfig;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +16,7 @@ public class AppConfigTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        appConfig = new AppConfig(new SessionManager());
+        appConfig = new AppConfig();
     }
 
     @AfterEach

@@ -22,7 +22,7 @@ public final class ResponseFactory {
      * @param data podaci
      * @return StandardResponseDto
      */
-    public ResponseEntity<Object> createResponse(Integer statusCode,  String message, Object data) {
+    public static ResponseEntity<Object> createResponse(Integer statusCode,  String message, Object data) {
         return ResponseEntity.status(statusCode)
                 .body(StandardResponseDto.builder()
                         .statusCode(statusCode)
@@ -37,7 +37,7 @@ public final class ResponseFactory {
      *
      * @return StandardResponseDto
      */
-    public ResponseEntity<Object> somethingWentWrong() {
+    public static ResponseEntity<Object> somethingWentWrong() {
         return createResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.toString(),
                 ErrorMessage.SOMETHING_WENT_WRONG);
     }
@@ -48,7 +48,7 @@ public final class ResponseFactory {
      * @param message poruka
      * @return StandardResponseDto
      */
-    public ResponseEntity<Object> somethingWentWrong(String message) {
+    public static ResponseEntity<Object> somethingWentWrong(String message) {
         return createResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), message,
                 ErrorMessage.SOMETHING_WENT_WRONG);
     }
@@ -59,7 +59,7 @@ public final class ResponseFactory {
      * @param data podaci
      * @return StandardResponseDto
      */
-    public ResponseEntity<Object> ok(Object data) {
+    public static ResponseEntity<Object> ok(Object data) {
         return createResponse(HttpStatus.OK.value(), HttpStatus.OK.toString(), data);
     }
 
@@ -69,7 +69,7 @@ public final class ResponseFactory {
      * @param message poruka
      * @return StandardResponseDto
      */
-    public ResponseEntity<Object> ok(String message) {
+    public static ResponseEntity<Object> ok(String message) {
         return createResponse(HttpStatus.OK.value(), message, "");
     }
 
@@ -80,7 +80,7 @@ public final class ResponseFactory {
      * @param data podaci
      * @return StandardResponseDto
      */
-    public ResponseEntity<Object> ok(String message, Object data) {
+    public static ResponseEntity<Object> ok(String message, Object data) {
         return createResponse(HttpStatus.OK.value(), message, data);
     }
 
@@ -90,7 +90,7 @@ public final class ResponseFactory {
      * @param message poruka
      * @return StandardResponseDto
      */
-    public ResponseEntity<Object> badRequest(String message) {
+    public static ResponseEntity<Object> badRequest(String message) {
         return createResponse(HttpStatus.BAD_REQUEST.value(), message, "");
     }
 
@@ -100,7 +100,7 @@ public final class ResponseFactory {
      * @param message poruka
      * @return StandardResponseDto
      */
-    public ResponseEntity<Object> notFound(String message) {
+    public static ResponseEntity<Object> notFound(String message) {
         return createResponse(HttpStatus.NOT_FOUND.value(), message, "");
     }
 
@@ -110,7 +110,7 @@ public final class ResponseFactory {
      * @param message poruka
      * @return StandardResponseDto
      */
-    public ResponseEntity<Object> forbidden(String message) {
+    public static ResponseEntity<Object> forbidden(String message) {
         return createResponse(HttpStatus.FORBIDDEN.value(), message, "");
     }
 
@@ -120,7 +120,7 @@ public final class ResponseFactory {
      * @param message poruka
      * @return StandardResponseDto
      */
-    public ResponseEntity<Object> unauthorized(String message) {
+    public static ResponseEntity<Object> unauthorized(String message) {
         return createResponse(HttpStatus.UNAUTHORIZED.value(), message, "");
     }
 }

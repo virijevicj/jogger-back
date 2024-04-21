@@ -1,4 +1,4 @@
-package com.jogger.rs.junit;
+package com.jogger.rs.unit;
 
 import com.jogger.rs.role.Role;
 import com.jogger.rs.role.RoleName;

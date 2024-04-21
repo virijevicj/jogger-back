@@ -1,4 +1,4 @@
-package com.jogger.rs.junit;
+package com.jogger.rs.unit;
 
 import com.jogger.rs.dto.NewCommentDto;
 import com.jogger.rs.dto.NewLMDto;

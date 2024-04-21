@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * Dto objekat zaduzen za komunikaciju klijentske i serverske strane aplikacije.
- *
  * Sadrzi jedinstveni identifikator korisnika, username i lozinku potrebni za logovanje na sistem, ime, prezime i email korisnika,
  * da li je aktivan ili obrisan i sistema i listu uloga koje korisnik ima u sistemu.
  * Koristi se uvek kao objekat koji se salje na korisnicki zahtev.
