@@ -41,23 +41,23 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth ->
                         auth
                                 .requestMatchers(RequestMappingPrefix.AUTH + "/login").permitAll()
-                                .requestMatchers(HttpMethod.GET, CONTEXT_PATH  + RequestMappingPrefix.LEARNING_MATERIAL_ENTITIES)
+                                .requestMatchers(HttpMethod.GET, RequestMappingPrefix.LEARNING_MATERIAL_ENTITIES)
                                     .hasAnyRole(RoleName.Developer.name(), RoleName.Intern.name())
-                                .requestMatchers(HttpMethod.GET, CONTEXT_PATH + RequestMappingPrefix.LEARNING_MATERIAL)
+                                .requestMatchers(HttpMethod.GET, RequestMappingPrefix.LEARNING_MATERIAL)
                                     .hasAnyRole(RoleName.Developer.name(), RoleName.Intern.name())
                                 .requestMatchers(
-                                        CONTEXT_PATH + RequestMappingPrefix.LEARNING_MATERIAL,
-                                        CONTEXT_PATH + RequestMappingPrefix.LEARNING_MATERIAL + "/**",
-                                        CONTEXT_PATH + RequestMappingPrefix.LEARNING_MATERIAL_COMMENT,
-                                        CONTEXT_PATH + RequestMappingPrefix.LEARNING_MATERIAL_COMMENT + "/**",
-                                        CONTEXT_PATH + RequestMappingPrefix.LEARNING_MATERIAL_ENTITIES,
-                                        CONTEXT_PATH + RequestMappingPrefix.LEARNING_MATERIAL_ENTITIES + "/**")
+                                         RequestMappingPrefix.LEARNING_MATERIAL,
+                                        RequestMappingPrefix.LEARNING_MATERIAL + "/**",
+                                        RequestMappingPrefix.LEARNING_MATERIAL_COMMENT,
+                                        RequestMappingPrefix.LEARNING_MATERIAL_COMMENT + "/**",
+                                        RequestMappingPrefix.LEARNING_MATERIAL_ENTITIES,
+                                        RequestMappingPrefix.LEARNING_MATERIAL_ENTITIES + "/**")
                                     .hasRole(RoleName.Developer.name())
                                 .requestMatchers(
-                                        CONTEXT_PATH + RequestMappingPrefix.USER,
-                                        CONTEXT_PATH + RequestMappingPrefix.USER + "/**")
+                                        RequestMappingPrefix.USER,
+                                        RequestMappingPrefix.USER + "/**")
                                     .hasRole(RoleName.Admin.name())
-                                .anyRequest().authenticated())
+                               .anyRequest().authenticated())
                 .formLogin(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

@@ -10,7 +10,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -53,7 +52,7 @@ public class JWTFilter extends OncePerRequestFilter {
 
             UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getUsername(),
                     user.getPassword(),
-                    user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName().name())).toList());
+                    user.getRoles().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName().name())).toList());
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                     userDetails, null, userDetails.getAuthorities());
 
